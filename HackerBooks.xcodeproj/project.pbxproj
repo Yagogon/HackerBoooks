@@ -1,0 +1,499 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		070C3BEE1AC9AD0000260CA5 /* AGTBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */; };
+		07408C181ABDD59000EDF387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C171ABDD59000EDF387 /* main.m */; };
+		07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C1A1ABDD59000EDF387 /* AppDelegate.m */; };
+		07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07408C1C1ABDD59000EDF387 /* Images.xcassets */; };
+		07408C201ABDD59000EDF387 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07408C1E1ABDD59000EDF387 /* LaunchScreen.xib */; };
+		07408C2C1ABDD59000EDF387 /* HackerBooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C2B1ABDD59000EDF387 /* HackerBooksTests.m */; };
+		07408C371ABDD69300EDF387 /* AGTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C361ABDD69300EDF387 /* AGTBook.m */; };
+		07408C3B1ABDD8C400EDF387 /* AGTLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */; };
+		074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 074838341ACC505800B1BDE6 /* AGTLocalFile.m */; };
+		077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */; };
+		077AAC6D1ACA96B4000C795A /* AGTBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */; };
+		077AAC741ACAA15E000C795A /* AGTPdfReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */; };
+		077AAC751ACAA15E000C795A /* AGTPdfReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC731ACAA15E000C795A /* AGTPdfReaderViewController.xib */; };
+		077AAC771ACAA6EF000C795A /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC761ACAA6EF000C795A /* favorite.png */; };
+		077AAC791ACAA76C000C795A /* no_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC781ACAA76C000C795A /* no_favorite.png */; };
+		07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A399051AC96157000CD280 /* AGTJSONUtils.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		07408C261ABDD59000EDF387 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07408C0A1ABDD59000EDF387 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07408C111ABDD59000EDF387;
+			remoteInfo = HackerBooks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		070C3BEC1AC9AD0000260CA5 /* AGTBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBooksTableViewController.h; sourceTree = "<group>"; };
+		070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBooksTableViewController.m; sourceTree = "<group>"; };
+		07408C121ABDD59000EDF387 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07408C161ABDD59000EDF387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07408C171ABDD59000EDF387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		07408C191ABDD59000EDF387 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		07408C1A1ABDD59000EDF387 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		07408C1C1ABDD59000EDF387 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		07408C1F1ABDD59000EDF387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		07408C251ABDD59000EDF387 /* HackerBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07408C2A1ABDD59000EDF387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07408C2B1ABDD59000EDF387 /* HackerBooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerBooksTests.m; sourceTree = "<group>"; };
+		07408C351ABDD69300EDF387 /* AGTBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBook.h; sourceTree = "<group>"; };
+		07408C361ABDD69300EDF387 /* AGTBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBook.m; sourceTree = "<group>"; };
+		07408C391ABDD8C400EDF387 /* AGTLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibrary.h; sourceTree = "<group>"; };
+		07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibrary.m; sourceTree = "<group>"; };
+		074838331ACC505800B1BDE6 /* AGTLocalFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLocalFile.h; sourceTree = "<group>"; };
+		074838341ACC505800B1BDE6 /* AGTLocalFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLocalFile.m; sourceTree = "<group>"; };
+		074838361ACC52FC00B1BDE6 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		077AAC691ACA96B4000C795A /* AGTBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBookViewController.h; sourceTree = "<group>"; };
+		077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBookViewController.m; sourceTree = "<group>"; };
+		077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTBookViewController.xib; sourceTree = "<group>"; };
+		077AAC711ACAA15E000C795A /* AGTPdfReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPdfReaderViewController.h; sourceTree = "<group>"; };
+		077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPdfReaderViewController.m; sourceTree = "<group>"; };
+		077AAC731ACAA15E000C795A /* AGTPdfReaderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTPdfReaderViewController.xib; sourceTree = "<group>"; };
+		077AAC761ACAA6EF000C795A /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
+		077AAC781ACAA76C000C795A /* no_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_favorite.png; sourceTree = "<group>"; };
+		07A399041AC96157000CD280 /* AGTJSONUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTJSONUtils.h; sourceTree = "<group>"; };
+		07A399051AC96157000CD280 /* AGTJSONUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTJSONUtils.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07408C0F1ABDD59000EDF387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07408C221ABDD59000EDF387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		070C3BEF1AC9AD0600260CA5 /* Controlador */ = {
+			isa = PBXGroup;
+			children = (
+				070C3BEC1AC9AD0000260CA5 /* AGTBooksTableViewController.h */,
+				070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */,
+				077AAC691ACA96B4000C795A /* AGTBookViewController.h */,
+				077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */,
+				077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */,
+				077AAC711ACAA15E000C795A /* AGTPdfReaderViewController.h */,
+				077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */,
+				077AAC731ACAA15E000C795A /* AGTPdfReaderViewController.xib */,
+			);
+			name = Controlador;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		07408C091ABDD59000EDF387 = {
+			isa = PBXGroup;
+			children = (
+				077AAC781ACAA76C000C795A /* no_favorite.png */,
+				077AAC761ACAA6EF000C795A /* favorite.png */,
+				07408C141ABDD59000EDF387 /* HackerBooks */,
+				07408C281ABDD59000EDF387 /* HackerBooksTests */,
+				07408C131ABDD59000EDF387 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		07408C131ABDD59000EDF387 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07408C121ABDD59000EDF387 /* HackerBooks.app */,
+				07408C251ABDD59000EDF387 /* HackerBooksTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07408C141ABDD59000EDF387 /* HackerBooks */ = {
+			isa = PBXGroup;
+			children = (
+				070C3BEF1AC9AD0600260CA5 /* Controlador */,
+				07408C381ABDD69A00EDF387 /* Modelo */,
+				07408C191ABDD59000EDF387 /* AppDelegate.h */,
+				07408C1A1ABDD59000EDF387 /* AppDelegate.m */,
+				07408C1C1ABDD59000EDF387 /* Images.xcassets */,
+				07408C1E1ABDD59000EDF387 /* LaunchScreen.xib */,
+				07408C151ABDD59000EDF387 /* Supporting Files */,
+				07A399071AC9615D000CD280 /* Utils */,
+			);
+			path = HackerBooks;
+			sourceTree = "<group>";
+		};
+		07408C151ABDD59000EDF387 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07408C161ABDD59000EDF387 /* Info.plist */,
+				07408C171ABDD59000EDF387 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		07408C281ABDD59000EDF387 /* HackerBooksTests */ = {
+			isa = PBXGroup;
+			children = (
+				07408C2B1ABDD59000EDF387 /* HackerBooksTests.m */,
+				07408C291ABDD59000EDF387 /* Supporting Files */,
+			);
+			path = HackerBooksTests;
+			sourceTree = "<group>";
+		};
+		07408C291ABDD59000EDF387 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				07408C2A1ABDD59000EDF387 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		07408C381ABDD69A00EDF387 /* Modelo */ = {
+			isa = PBXGroup;
+			children = (
+				07408C351ABDD69300EDF387 /* AGTBook.h */,
+				07408C361ABDD69300EDF387 /* AGTBook.m */,
+				07408C391ABDD8C400EDF387 /* AGTLibrary.h */,
+				07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */,
+			);
+			name = Modelo;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		07A399071AC9615D000CD280 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				07A399041AC96157000CD280 /* AGTJSONUtils.h */,
+				07A399051AC96157000CD280 /* AGTJSONUtils.m */,
+				074838331ACC505800B1BDE6 /* AGTLocalFile.h */,
+				074838341ACC505800B1BDE6 /* AGTLocalFile.m */,
+				074838361ACC52FC00B1BDE6 /* Constants.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07408C111ABDD59000EDF387 /* HackerBooks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07408C2F1ABDD59000EDF387 /* Build configuration list for PBXNativeTarget "HackerBooks" */;
+			buildPhases = (
+				07408C0E1ABDD59000EDF387 /* Sources */,
+				07408C0F1ABDD59000EDF387 /* Frameworks */,
+				07408C101ABDD59000EDF387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HackerBooks;
+			productName = HackerBooks;
+			productReference = 07408C121ABDD59000EDF387 /* HackerBooks.app */;
+			productType = "com.apple.product-type.application";
+		};
+		07408C241ABDD59000EDF387 /* HackerBooksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07408C321ABDD59000EDF387 /* Build configuration list for PBXNativeTarget "HackerBooksTests" */;
+			buildPhases = (
+				07408C211ABDD59000EDF387 /* Sources */,
+				07408C221ABDD59000EDF387 /* Frameworks */,
+				07408C231ABDD59000EDF387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07408C271ABDD59000EDF387 /* PBXTargetDependency */,
+			);
+			name = HackerBooksTests;
+			productName = HackerBooksTests;
+			productReference = 07408C251ABDD59000EDF387 /* HackerBooksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07408C0A1ABDD59000EDF387 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = com.cininika;
+				TargetAttributes = {
+					07408C111ABDD59000EDF387 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					07408C241ABDD59000EDF387 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 07408C111ABDD59000EDF387;
+					};
+				};
+			};
+			buildConfigurationList = 07408C0D1ABDD59000EDF387 /* Build configuration list for PBXProject "HackerBooks" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07408C091ABDD59000EDF387;
+			productRefGroup = 07408C131ABDD59000EDF387 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07408C111ABDD59000EDF387 /* HackerBooks */,
+				07408C241ABDD59000EDF387 /* HackerBooksTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07408C101ABDD59000EDF387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07408C201ABDD59000EDF387 /* LaunchScreen.xib in Resources */,
+				077AAC771ACAA6EF000C795A /* favorite.png in Resources */,
+				077AAC791ACAA76C000C795A /* no_favorite.png in Resources */,
+				07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */,
+				077AAC6D1ACA96B4000C795A /* AGTBookViewController.xib in Resources */,
+				077AAC751ACAA15E000C795A /* AGTPdfReaderViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07408C231ABDD59000EDF387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07408C0E1ABDD59000EDF387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07408C3B1ABDD8C400EDF387 /* AGTLibrary.m in Sources */,
+				077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */,
+				07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */,
+				07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */,
+				074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */,
+				07408C371ABDD69300EDF387 /* AGTBook.m in Sources */,
+				07408C181ABDD59000EDF387 /* main.m in Sources */,
+				070C3BEE1AC9AD0000260CA5 /* AGTBooksTableViewController.m in Sources */,
+				077AAC741ACAA15E000C795A /* AGTPdfReaderViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07408C211ABDD59000EDF387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07408C2C1ABDD59000EDF387 /* HackerBooksTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07408C271ABDD59000EDF387 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07408C111ABDD59000EDF387 /* HackerBooks */;
+			targetProxy = 07408C261ABDD59000EDF387 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		07408C1E1ABDD59000EDF387 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07408C1F1ABDD59000EDF387 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		07408C2D1ABDD59000EDF387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		07408C2E1ABDD59000EDF387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		07408C301ABDD59000EDF387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HackerBooks/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07408C311ABDD59000EDF387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HackerBooks/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		07408C331ABDD59000EDF387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HackerBooksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackerBooks.app/HackerBooks";
+			};
+			name = Debug;
+		};
+		07408C341ABDD59000EDF387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HackerBooksTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackerBooks.app/HackerBooks";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07408C0D1ABDD59000EDF387 /* Build configuration list for PBXProject "HackerBooks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07408C2D1ABDD59000EDF387 /* Debug */,
+				07408C2E1ABDD59000EDF387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07408C2F1ABDD59000EDF387 /* Build configuration list for PBXNativeTarget "HackerBooks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07408C301ABDD59000EDF387 /* Debug */,
+				07408C311ABDD59000EDF387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07408C321ABDD59000EDF387 /* Build configuration list for PBXNativeTarget "HackerBooksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07408C331ABDD59000EDF387 /* Debug */,
+				07408C341ABDD59000EDF387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07408C0A1ABDD59000EDF387 /* Project object */;
+}
