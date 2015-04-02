@@ -62,7 +62,7 @@
     
     // Comprobamos si existe en local
     if (!data) {
-        // Si no existe la cargamos
+        // Si no existe lo guardamos
         [AGTLocalFile saveDataWithURL:url];
         data = [NSData dataWithContentsOfURL:dataURL options:NSDataReadingMappedIfSafe error:&error];
     }
@@ -74,6 +74,15 @@
     }
     
     return data;
+}
+
++(NSString *) localPathWithURL: (NSURL *) url {
+    
+    [AGTLocalFile dataWithURL:url];
+    
+    return [[[AGTLocalFile URLToDocuments]
+             URLByAppendingPathComponent:[url lastPathComponent]]
+            path];
 }
      
 
