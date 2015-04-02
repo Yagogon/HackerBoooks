@@ -27,6 +27,9 @@
     if (self = [super initWithStyle:aStyle]) {
         _library = library;
         self.title = @"Biblioteca";
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(markAsFavorite:) name:FAVORITE_NOTIFICATION object:nil];
+        
     }
     
     return self;
@@ -38,9 +41,7 @@
     
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(markAsFavorite:) name:FAVORITE_NOTIFICATION object:nil];
-    
-    UIApplication *app = [UIApplication sharedApplication];
+       UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(saveData:)
                                                  name:UIApplicationDidEnterBackgroundNotification
@@ -62,13 +63,16 @@
     
     [super viewWillDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:FAVORITE_NOTIFICATION object:nil];
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationDidEnterBackgroundNotification
                                                   object:nil];
     
     // [self saveData:nil];
+}
+
+-(void) dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:FAVORITE_NOTIFICATION object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

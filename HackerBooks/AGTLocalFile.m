@@ -78,11 +78,17 @@
 
 +(NSString *) localPathWithURL: (NSURL *) url {
     
+    return [[AGTLocalFile localURL:url] path];
+
+}
+
++(NSURL *) localURL: (NSURL *) url {
+    
     [AGTLocalFile dataWithURL:url];
     
-    return [[[AGTLocalFile URLToDocuments]
-             URLByAppendingPathComponent:[url lastPathComponent]]
-            path];
+    return [[AGTLocalFile URLToDocuments]
+             URLByAppendingPathComponent:[url lastPathComponent]];
+
 }
      
 

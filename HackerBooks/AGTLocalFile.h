@@ -17,4 +17,6 @@
 
 +(NSString *) localPathWithURL: (NSURL *) url;
 
++(NSURL *) localURL: (NSURL *) url;
+
 @end

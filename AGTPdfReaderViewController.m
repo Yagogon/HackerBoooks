@@ -8,6 +8,7 @@
 
 #import "AGTPdfReaderViewController.h"
 #import "AGTBook.h"
+#import "AGTLocalFile.h"
 
 @interface AGTPdfReaderViewController ()
 
@@ -51,7 +52,8 @@
     
     // Load pdf into NSData
     NSError *error;
-    NSData *PDFData = [NSData dataWithContentsOfURL:self.book.pdfURL
+    
+    NSData *PDFData = [NSData dataWithContentsOfURL:[AGTLocalFile localURL:self.book.pdfURL]
                                             options:kNilOptions
                                               error:&error];
     if(!PDFData){

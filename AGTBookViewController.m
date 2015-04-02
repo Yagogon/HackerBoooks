@@ -85,6 +85,7 @@
     self.titleLabel.text = self.book.title;
     self.authorsLabel.text = [[self.book.authors valueForKey:@"description"] componentsJoinedByString:@","];
     self.tagsLabel.text = [[self.book.tags valueForKey:@"description"] componentsJoinedByString:@","];
+    self.title = self.book.title;
     [self updateFavoriteButtonWithBool:self.book.favorite];
     
 }
@@ -101,6 +102,8 @@
     }
 
 }
+
+#pragma mark - Notifications
 
 -(void) checkFavoriteTag: (NSNotification *) notification {
     
