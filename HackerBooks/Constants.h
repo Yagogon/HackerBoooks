@@ -16,3 +16,4 @@
 #define BOOK_KEY @"bookKey"
 #define FAVORITE_KEY @"favorite"
 #define FAVORITE_TAG_KEY @"favoritos"
+#define BOOK_CHANGE_NOTIFICATION @"pdfChangeNotification"

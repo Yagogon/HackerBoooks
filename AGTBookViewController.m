@@ -40,6 +40,8 @@
     [self syncViewAndModel];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
 }
 
 - (void)viewDidLoad {
@@ -63,7 +65,6 @@
 
 - (IBAction)openPdf:(id)sender {
     
-    AGTPdfReaderViewController *PDFVc = [[AGTPdfReaderViewController alloc] initWithBook:self.book];
     ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
     [self.navigationController pushViewController:readerVC animated:YES];
@@ -77,6 +78,11 @@
 
 
 #pragma mark - Utils
+
+-(void) showPDF {
+    
+    
+}
 
 -(void) syncViewAndModel {
     
@@ -114,6 +120,10 @@
     BOOL favorite = [[[notification userInfo] objectForKey:BOOK_KEY] favorite];
     
     [self updateFavoriteButtonWithBool:favorite];
+    
+}
+
+-(void) updatePDF: (NSNotification *) notification {
     
 }
 

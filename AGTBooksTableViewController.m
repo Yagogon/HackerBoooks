@@ -13,6 +13,7 @@
 #import "AGTJSONUtils.h"
 #import "AGTLocalFile.h"
 #import "Constants.h"
+#import "ReaderDocument.h"
 
 @interface AGTBooksTableViewController ()
 
@@ -134,6 +135,11 @@
     
     NSString *tag = [self.library tagWithSection:indexPath.section];
     AGTBook *book = [self.library booksForTag:tag atIndex:indexPath.row];
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    ReaderDocument *document = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:book.pdfURL] password:nil];
+    [center postNotificationName:BOOK_CHANGE_NOTIFICATION object:self userInfo:@{ @"document" : document}];
     
     [self.delegate booksTableViewController:self didSelectedBook:book];
     
