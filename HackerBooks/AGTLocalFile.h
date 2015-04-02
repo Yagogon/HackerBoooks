@@ -12,6 +12,9 @@
 @interface AGTLocalFile : NSObject
 
 +(void) saveDataWithURL: (NSURL *) url;
+
 +(NSData *) dataWithURL: (NSURL *) url;
+
++(NSString *) localPathWithURL: (NSURL *) url;
 
 @end
