@@ -10,6 +10,9 @@
 #import "AGTBook.h"
 #import "AGTPdfReaderViewController.h"
 #import "Constants.h"
+#import "ReaderDocument.h"
+#import "AGTLocalFile.h"
+#import "ReaderViewController.h"
 
 @interface AGTBookViewController ()
 
@@ -47,7 +50,7 @@
 -(void) viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FAVORITE_NOTIFICATION object:nil];
 }
 
@@ -61,8 +64,9 @@
 - (IBAction)openPdf:(id)sender {
     
     AGTPdfReaderViewController *PDFVc = [[AGTPdfReaderViewController alloc] initWithBook:self.book];
-    
-    [self.navigationController pushViewController:PDFVc animated:YES];
+    ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
+    ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
+    [self.navigationController pushViewController:readerVC animated:YES];
 }
 
 - (IBAction)markAsFavorite:(id)sender {

@@ -23,6 +23,7 @@
 		077AAC771ACAA6EF000C795A /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC761ACAA6EF000C795A /* favorite.png */; };
 		077AAC791ACAA76C000C795A /* no_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC781ACAA76C000C795A /* no_favorite.png */; };
 		07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A399051AC96157000CD280 /* AGTJSONUtils.m */; };
+		578D307A35127AF3BB6D22B5 /* libPods-HackerBooks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 357389BA34C7F7BCBD8339F0 /* libPods-HackerBooks.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,9 @@
 		077AAC781ACAA76C000C795A /* no_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_favorite.png; sourceTree = "<group>"; };
 		07A399041AC96157000CD280 /* AGTJSONUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTJSONUtils.h; sourceTree = "<group>"; };
 		07A399051AC96157000CD280 /* AGTJSONUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTJSONUtils.m; sourceTree = "<group>"; };
+		357389BA34C7F7BCBD8339F0 /* libPods-HackerBooks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerBooks.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		98581A6C343DE5C67B3CDA61 /* Pods-HackerBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackerBooks/Pods-HackerBooks.release.xcconfig"; sourceTree = "<group>"; };
+		B9CA823252E863C924F51639 /* Pods-HackerBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerBooks/Pods-HackerBooks.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				578D307A35127AF3BB6D22B5 /* libPods-HackerBooks.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +114,8 @@
 				07408C141ABDD59000EDF387 /* HackerBooks */,
 				07408C281ABDD59000EDF387 /* HackerBooksTests */,
 				07408C131ABDD59000EDF387 /* Products */,
+				12EC492EB855927439E8B926 /* Pods */,
+				BFA584A2C7F46D41CBB0DA8D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +193,23 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		12EC492EB855927439E8B926 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9CA823252E863C924F51639 /* Pods-HackerBooks.debug.xcconfig */,
+				98581A6C343DE5C67B3CDA61 /* Pods-HackerBooks.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BFA584A2C7F46D41CBB0DA8D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				357389BA34C7F7BCBD8339F0 /* libPods-HackerBooks.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07408C2F1ABDD59000EDF387 /* Build configuration list for PBXNativeTarget "HackerBooks" */;
 			buildPhases = (
+				152111C30F35ECF4E9726F65 /* Check Pods Manifest.lock */,
 				07408C0E1ABDD59000EDF387 /* Sources */,
 				07408C0F1ABDD59000EDF387 /* Frameworks */,
 				07408C101ABDD59000EDF387 /* Resources */,
+				EACD787752A89F28F10DA7B4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +261,7 @@
 				TargetAttributes = {
 					07408C111ABDD59000EDF387 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = MJJL96YSF5;
 					};
 					07408C241ABDD59000EDF387 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -283,6 +310,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		152111C30F35ECF4E9726F65 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EACD787752A89F28F10DA7B4 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HackerBooks/Pods-HackerBooks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07408C0E1ABDD59000EDF387 /* Sources */ = {
@@ -411,21 +471,29 @@
 		};
 		07408C301ABDD59000EDF387 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9CA823252E863C924F51639 /* Pods-HackerBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HackerBooks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		07408C311ABDD59000EDF387 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98581A6C343DE5C67B3CDA61 /* Pods-HackerBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HackerBooks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
