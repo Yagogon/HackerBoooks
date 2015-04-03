@@ -138,8 +138,7 @@
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
-    ReaderDocument *document = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:book.pdfURL] password:nil];
-    [center postNotificationName:BOOK_CHANGE_NOTIFICATION object:self userInfo:@{ @"document" : document}];
+    //[center postNotificationName:BOOK_CHANGE_NOTIFICATION object:self userInfo:@{ @"url" : [AGTLocalFile localPathWithURL:book.pdfURL] }];
     
     [self.delegate booksTableViewController:self didSelectedBook:book];
     

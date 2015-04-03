@@ -27,6 +27,7 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _book = book;
         self.title = book.title;
+
     }
     return self;
 }
@@ -65,8 +66,16 @@
 
 - (IBAction)openPdf:(id)sender {
     
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
+    
     ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
+    
+   // [self.activityIndicator stopAnimating];
+   // self.activityIndicator.hidden = YES;
+    
+    
     [self.navigationController pushViewController:readerVC animated:YES];
 }
 
@@ -86,10 +95,8 @@
 
 -(void) syncViewAndModel {
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.book.photoURL];
-    NSURLResponse *response = [[NSURLResponse alloc]init];
-    NSError *error;
-    NSData *imageData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+       
+    NSData *imageData = [AGTLocalFile dataWithURL:self.book.photoURL];
     
     self.pdfImage.image = [UIImage imageWithData:imageData];
     self.titleLabel.text = self.book.title;
