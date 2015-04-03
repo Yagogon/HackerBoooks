@@ -9,6 +9,7 @@
 #import "AGTPdfReaderViewController.h"
 #import "AGTBook.h"
 #import "AGTLocalFile.h"
+#import "Constants.h"
 
 @interface AGTPdfReaderViewController ()
 
@@ -31,19 +32,25 @@
 #pragma  mark - View LifeCycle
 
 -(void) viewWillAppear:(BOOL)animated {
-
+    
     [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onChangeBook:)
+                                                 name:BOOK_CHANGE_NOTIFICATION
+                                               object:nil];
+    
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    // Asignamos delegado
+    self.browser.delegate = self;
+    
     [self displayPDF];
-}
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - Utils
@@ -52,6 +59,9 @@
     
     // Load pdf into NSData
     NSError *error;
+    
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
     
     NSData *PDFData = [NSData dataWithContentsOfURL:[AGTLocalFile localURL:self.book.pdfURL]
                                             options:kNilOptions
@@ -64,5 +74,24 @@
     }
 }
 
+
+#pragma mark - Notifications
+
+-(void) onChangeBook: (NSNotification *) notification {
+    
+    AGTBook *book = [[notification userInfo] objectForKey:BOOK_KEY];
+    
+    self.book = book;
+    
+    [self displayPDF];
+}
+
+#pragma mark - UIWebViewDelegate
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    //[self.activityIndicator stopAnimating];
+    //self.activityIndicator.hidden = YES;
+}
 
 @end

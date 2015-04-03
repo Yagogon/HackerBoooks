@@ -41,7 +41,7 @@
     
     [super viewWillAppear:animated];
     
-       UIApplication *app = [UIApplication sharedApplication];
+    UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(saveData:)
                                                  name:UIApplicationDidEnterBackgroundNotification
@@ -136,6 +136,10 @@
     AGTBook *book = [self.library booksForTag:tag atIndex:indexPath.row];
     
     [self.delegate booksTableViewController:self didSelectedBook:book];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:BOOK_CHANGE_NOTIFICATION
+                                                        object:self
+                                                      userInfo:@{ BOOK_KEY : book }];
     
 }
 

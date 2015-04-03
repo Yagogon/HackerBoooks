@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 @class AGTBook;
 
-@interface AGTPdfReaderViewController : UIViewController
+@interface AGTPdfReaderViewController : UIViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *browser;
 @property (strong, nonatomic) AGTBook *book;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 -(id) initWithBook: (AGTBook *)book;
 
