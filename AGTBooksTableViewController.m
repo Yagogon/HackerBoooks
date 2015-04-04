@@ -138,7 +138,7 @@
     
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
-    //[center postNotificationName:BOOK_CHANGE_NOTIFICATION object:self userInfo:@{ @"url" : [AGTLocalFile localPathWithURL:book.pdfURL] }];
+    [center postNotificationName:BOOK_CHANGE_NOTIFICATION object:self userInfo:@{ BOOK_KEY : book }];
     
     [self.delegate booksTableViewController:self didSelectedBook:book];
     

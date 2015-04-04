@@ -28,6 +28,10 @@
         _book = book;
         self.title = book.title;
         
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updatePDF:)
+                                                     name:BOOK_CHANGE_NOTIFICATION
+                                                   object:nil];
     }
     return self;
 }
@@ -42,7 +46,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
 }
 
 - (void)viewDidLoad {
@@ -57,6 +60,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FAVORITE_NOTIFICATION object:nil];
 }
 
+-(void) dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -66,18 +74,7 @@
 
 - (IBAction)openPdf:(id)sender {
     
-    [self.view bringSubviewToFront:self.activityIndicator];
-    [self.activityIndicator setHidden:NO];
-    [self.activityIndicator startAnimating];
-    
-    ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
-    ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
-    readerVC.title = self.book.title;
-   // [self.activityIndicator stopAnimating];
-   // self.activityIndicator.hidden = YES;
-    
-    
-    [self.navigationController pushViewController:readerVC animated:YES];
+    [self showPDF];
 }
 
 - (IBAction)markAsFavorite:(id)sender {
@@ -91,6 +88,19 @@
 
 -(void) showPDF {
     
+    [self.view bringSubviewToFront:self.activityIndicator];
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
+    
+    ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
+    ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
+    readerVC.title = self.book.title;
+    
+    [self.activityIndicator stopAnimating];
+    self.activityIndicator.hidden = YES;
+    
+    
+    [self.navigationController pushViewController:readerVC animated:YES];
     
 }
 
@@ -131,7 +141,17 @@
     
 }
 
+// Forma poco elegante mientras no soluciono las modificaciones en vfr reader para aceptar notificaciones
+
 -(void) updatePDF: (NSNotification *) notification {
+    
+    AGTBook *book = [[notification userInfo] objectForKey: BOOK_KEY];
+    
+    self.book = book;
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
+    [self showPDF];
     
 }
 

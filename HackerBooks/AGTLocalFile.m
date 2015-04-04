@@ -22,7 +22,8 @@
     if (!data) {
         NSLog(@"Error al recuperar los datos, %@", error.localizedDescription);
     }
-        return data;
+    
+    return data;
 }
 
 +(NSURL *) URLToDocuments {
@@ -79,7 +80,7 @@
 +(NSString *) localPathWithURL: (NSURL *) url {
     
     return [[AGTLocalFile localURL:url] path];
-
+    
 }
 
 +(NSURL *) localURL: (NSURL *) url {
@@ -87,11 +88,9 @@
     [AGTLocalFile dataWithURL:url];
     
     return [[AGTLocalFile URLToDocuments]
-             URLByAppendingPathComponent:[url lastPathComponent]];
-
+            URLByAppendingPathComponent:[url lastPathComponent]];
+    
 }
-     
-
 
 @end
 

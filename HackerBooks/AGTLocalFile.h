@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class AGTBook;
 
-@interface AGTLocalFile : NSObject
+@interface AGTLocalFile : NSObject 
 
 +(void) saveDataWithURL: (NSURL *) url;
 
