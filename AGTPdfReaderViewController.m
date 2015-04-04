@@ -70,6 +70,7 @@
         NSLog(@"Error al cargar el PDF, %@",error.localizedDescription);
     }
     else{
+         self.title = self.book.title;
         [self.browser loadData:PDFData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
     }
 }
@@ -80,6 +81,10 @@
 -(void) onChangeBook: (NSNotification *) notification {
     
     AGTBook *book = [[notification userInfo] objectForKey:BOOK_KEY];
+    
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
+    [self.view bringSubviewToFront:self.activityIndicator];
     
     self.book = book;
     
