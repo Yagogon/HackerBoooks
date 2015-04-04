@@ -71,7 +71,7 @@
 }
 
 -(void) dealloc {
-    
+        
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FAVORITE_NOTIFICATION object:nil];
 }
 

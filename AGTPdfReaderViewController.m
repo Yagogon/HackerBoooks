@@ -40,14 +40,17 @@
                                                  name:BOOK_CHANGE_NOTIFICATION
                                                object:nil];
     
-}
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
+    [self.view bringSubviewToFront:self.activityIndicator];
+    
+   }
 
 -(void) viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
     // Asignamos delegado
     self.browser.delegate = self;
-    
     [self displayPDF];
 
     
@@ -59,9 +62,6 @@
     
     // Load pdf into NSData
     NSError *error;
-    
-    self.activityIndicator.hidden = NO;
-    [self.activityIndicator startAnimating];
     
     NSData *PDFData = [NSData dataWithContentsOfURL:[AGTLocalFile localURL:self.book.pdfURL]
                                             options:kNilOptions
@@ -90,8 +90,8 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    //[self.activityIndicator stopAnimating];
-    //self.activityIndicator.hidden = YES;
+    [self.activityIndicator stopAnimating];
+    self.activityIndicator.hidden = YES;
 }
 
 @end

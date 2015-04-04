@@ -23,6 +23,7 @@
 		077AAC771ACAA6EF000C795A /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC761ACAA6EF000C795A /* favorite.png */; };
 		077AAC791ACAA76C000C795A /* no_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC781ACAA76C000C795A /* no_favorite.png */; };
 		07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A399051AC96157000CD280 /* AGTJSONUtils.m */; };
+		07FE57FC1ACFE31A00A7301A /* AGTBookViewController~iphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07FE57FB1ACFE31A00A7301A /* AGTBookViewController~iphone.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		077AAC781ACAA76C000C795A /* no_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_favorite.png; sourceTree = "<group>"; };
 		07A399041AC96157000CD280 /* AGTJSONUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTJSONUtils.h; sourceTree = "<group>"; };
 		07A399051AC96157000CD280 /* AGTJSONUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTJSONUtils.m; sourceTree = "<group>"; };
+		07FE57FB1ACFE31A00A7301A /* AGTBookViewController~iphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AGTBookViewController~iphone.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		070C3BEF1AC9AD0600260CA5 /* Controlador */ = {
 			isa = PBXGroup;
 			children = (
+				07FE57FB1ACFE31A00A7301A /* AGTBookViewController~iphone.xib */,
 				070C3BEC1AC9AD0000260CA5 /* AGTBooksTableViewController.h */,
 				070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */,
 				077AAC691ACA96B4000C795A /* AGTBookViewController.h */,
@@ -235,6 +238,7 @@
 				TargetAttributes = {
 					07408C111ABDD59000EDF387 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = MJJL96YSF5;
 					};
 					07408C241ABDD59000EDF387 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -267,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07408C201ABDD59000EDF387 /* LaunchScreen.xib in Resources */,
+				07FE57FC1ACFE31A00A7301A /* AGTBookViewController~iphone.xib in Resources */,
 				077AAC771ACAA6EF000C795A /* favorite.png in Resources */,
 				077AAC791ACAA76C000C795A /* no_favorite.png in Resources */,
 				07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */,

@@ -17,6 +17,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLResponse *response = [[NSURLResponse alloc]init];
     NSError *error;
+
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     if (!data) {
