@@ -68,12 +68,13 @@
     
     [self.activityIndicator setHidden:NO];
     [self.activityIndicator startAnimating];
+    [self.view bringSubviewToFront:self.activityIndicator];
     
     ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
     
-   // [self.activityIndicator stopAnimating];
-   // self.activityIndicator.hidden = YES;
+   [self.activityIndicator stopAnimating];
+   self.activityIndicator.hidden = YES;
     
     
     [self.navigationController pushViewController:readerVC animated:YES];
