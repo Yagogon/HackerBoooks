@@ -27,7 +27,7 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _book = book;
         self.title = book.title;
-
+        
     }
     return self;
 }
@@ -42,7 +42,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
     
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkFavoriteTag:) name:FAVORITE_NOTIFICATION object:nil];
 }
 
 - (void)viewDidLoad {
@@ -53,7 +53,7 @@
 -(void) viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:FAVORITE_NOTIFICATION object:nil];
 }
 
@@ -66,15 +66,15 @@
 
 - (IBAction)openPdf:(id)sender {
     
+    [self.view bringSubviewToFront:self.activityIndicator];
     [self.activityIndicator setHidden:NO];
     [self.activityIndicator startAnimating];
-    [self.view bringSubviewToFront:self.activityIndicator];
     
     ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
-    
-   [self.activityIndicator stopAnimating];
-   self.activityIndicator.hidden = YES;
+    readerVC.title = self.book.title;
+   // [self.activityIndicator stopAnimating];
+   // self.activityIndicator.hidden = YES;
     
     
     [self.navigationController pushViewController:readerVC animated:YES];
@@ -96,7 +96,7 @@
 
 -(void) syncViewAndModel {
     
-       
+    
     NSData *imageData = [AGTLocalFile dataWithURL:self.book.photoURL];
     
     self.pdfImage.image = [UIImage imageWithData:imageData];
@@ -118,7 +118,7 @@
         UIImage *noFavoriteImage = [UIImage imageNamed:@"no_favorite.png"];
         [self.favoriteButton setImage:noFavoriteImage forState:UIControlStateNormal];
     }
-
+    
 }
 
 #pragma mark - Notifications
@@ -139,7 +139,7 @@
 
 -(void)booksTableViewController:(AGTBooksTableViewController *)tabVC
                 didSelectedBook:(AGTBook *)book {
-
+    
     self.book = book;
     [self syncViewAndModel];
 }
@@ -157,7 +157,7 @@
         // Se muestra la tabla y por lo tanto oculto el botón de la barra de navegación
         self.navigationItem.leftBarButtonItem = nil;
     }
-
+    
 }
 
 
