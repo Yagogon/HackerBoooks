@@ -91,7 +91,8 @@
     [self.view bringSubviewToFront:self.activityIndicator];
     [self.activityIndicator setHidden:NO];
     [self.activityIndicator startAnimating];
-    
+    [self.view setNeedsDisplay];
+
     ReaderDocument *d = [[ReaderDocument alloc] initWithFilePath:[AGTLocalFile localPathWithURL:self.book.pdfURL] password:nil];
     ReaderViewController *readerVC = [[ReaderViewController alloc] initWithReaderDocument:d];
     readerVC.title = self.book.title;
@@ -148,10 +149,12 @@
     AGTBook *book = [[notification userInfo] objectForKey: BOOK_KEY];
     
     self.book = book;
-    
-    [self.navigationController popToRootViewControllerAnimated:YES];
 
-    [self showPDF];
+    // Para saber si tengo abierto un controller con el pdf
+    if ( [[self.navigationController childViewControllers] count] > 1) {
+         [self.navigationController popToRootViewControllerAnimated:YES];
+         [self showPDF];
+    }
     
 }
 
