@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class AGTBook;
 
-@interface AGTLocalFile : NSObject
+@interface AGTLocalFile : NSObject <NSURLSessionDownloadDelegate>
 
 +(void) saveDataWithURL: (NSURL *) url;
 
@@ -18,5 +18,7 @@
 +(NSString *) localPathWithURL: (NSURL *) url;
 
 +(NSURL *) localURL: (NSURL *) url;
+
+-(void) saveData:(NSURL *)url completionBlock: (void (^)(NSArray * array)) completionBlock;
 
 @end

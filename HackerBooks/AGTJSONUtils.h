@@ -11,10 +11,10 @@
 #define FIRST_EXECUTION @"firstExecution"
 #define JSON_FILE @"books.json"
 
-@interface AGTJSONUtils : NSObject
-
-+(NSArray *) JSONBooks;
+@interface AGTJSONUtils : NSObject <NSURLSessionDownloadDelegate>
 
 +(void) saveJSONWithArray: (NSArray *) array;
+
++(NSArray *) JSONBooksWithCompletionBlock : (void (^)(NSArray * array)) completionBlock;
 
 @end

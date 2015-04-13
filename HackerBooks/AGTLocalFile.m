@@ -9,10 +9,17 @@
 #import "AGTLocalFile.h"
 #import "AGTBook.h"
 
+@interface AGTLocalFile ()
+
+@property (strong, nonatomic) NSURLSession *downloadSession;
+@property(strong, nonatomic) NSOperationQueue *delegateQueue;
+
+@end
+
 @implementation AGTLocalFile
 
 
-+(NSData *) dataWithExternalURL:(NSURL *)url {
++(NSData *) dataWithExternalURL:(NSURL *)url delegate: (id<NSURLSessionDownloadDelegate> *) delegate{
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLResponse *response = [[NSURLResponse alloc]init];
@@ -24,6 +31,25 @@
         NSLog(@"Error al recuperar los datos, %@", error.localizedDescription);
     }
         return data;
+}
+
+-(void) saveData:(NSURL *)url completionBlock: (void (^)(NSArray * array)) completionBlock{
+    
+    // Cola de descargas
+    self.delegateQueue = [[NSOperationQueue alloc] init];
+    // Creamos configuracion por defecto
+    NSURLSessionConfiguration *conf = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.downloadSession = [NSURLSession sessionWithConfiguration:conf];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+ 
+    NSURLSessionDataTask *task = [self.downloadSession dataTaskWithRequest:request
+                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                completionBlock(JSONObjects);
+                            }];
+    [task resume];
+    
 }
 
 +(NSURL *) URLToDocuments {
@@ -39,7 +65,7 @@
 
 +(void) saveDataWithURL: (NSURL *) url {
     
-    NSData *data = [AGTLocalFile dataWithExternalURL:url];
+    NSData *data = nil;
     NSURL *localURL = [AGTLocalFile URLToDocuments];
     NSError *error;
     
@@ -90,6 +116,14 @@
     return [[AGTLocalFile URLToDocuments]
              URLByAppendingPathComponent:[url lastPathComponent]];
 
+}
+
+#pragma mark -NSURLSessionDownloadDelegate
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    
+    NSLog(@"Acabó la descarga: %@", [NSData dataWithContentsOfURL:location]);
+    
 }
      
 

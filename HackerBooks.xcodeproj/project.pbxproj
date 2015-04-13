@@ -16,6 +16,8 @@
 		07408C371ABDD69300EDF387 /* AGTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C361ABDD69300EDF387 /* AGTBook.m */; };
 		07408C3B1ABDD8C400EDF387 /* AGTLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */; };
 		074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 074838341ACC505800B1BDE6 /* AGTLocalFile.m */; };
+		075957A41ADC35CC00EB34BB /* AGTLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075957A21ADC35CC00EB34BB /* AGTLoadingViewController.m */; };
+		075957A51ADC35CC00EB34BB /* AGTLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 075957A31ADC35CC00EB34BB /* AGTLoadingViewController.xib */; };
 		077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */; };
 		077AAC6D1ACA96B4000C795A /* AGTBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */; };
 		077AAC741ACAA15E000C795A /* AGTPdfReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */; };
@@ -56,6 +58,9 @@
 		074838331ACC505800B1BDE6 /* AGTLocalFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLocalFile.h; sourceTree = "<group>"; };
 		074838341ACC505800B1BDE6 /* AGTLocalFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLocalFile.m; sourceTree = "<group>"; };
 		074838361ACC52FC00B1BDE6 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		075957A11ADC35CC00EB34BB /* AGTLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLoadingViewController.h; sourceTree = "<group>"; };
+		075957A21ADC35CC00EB34BB /* AGTLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLoadingViewController.m; sourceTree = "<group>"; };
+		075957A31ADC35CC00EB34BB /* AGTLoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTLoadingViewController.xib; sourceTree = "<group>"; };
 		077AAC691ACA96B4000C795A /* AGTBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBookViewController.h; sourceTree = "<group>"; };
 		077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBookViewController.m; sourceTree = "<group>"; };
 		077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AGTBookViewController.xib; sourceTree = "<group>"; };
@@ -99,6 +104,9 @@
 				077AAC711ACAA15E000C795A /* AGTPdfReaderViewController.h */,
 				077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */,
 				077AAC731ACAA15E000C795A /* AGTPdfReaderViewController.xib */,
+				075957A11ADC35CC00EB34BB /* AGTLoadingViewController.h */,
+				075957A21ADC35CC00EB34BB /* AGTLoadingViewController.m */,
+				075957A31ADC35CC00EB34BB /* AGTLoadingViewController.xib */,
 			);
 			name = Controlador;
 			path = ..;
@@ -276,6 +284,7 @@
 				077AAC791ACAA76C000C795A /* no_favorite.png in Resources */,
 				07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */,
 				077AAC6D1ACA96B4000C795A /* AGTBookViewController.xib in Resources */,
+				075957A51ADC35CC00EB34BB /* AGTLoadingViewController.xib in Resources */,
 				077AAC751ACAA15E000C795A /* AGTPdfReaderViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +307,7 @@
 				077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */,
 				07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */,
 				07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */,
+				075957A41ADC35CC00EB34BB /* AGTLoadingViewController.m in Sources */,
 				074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */,
 				07408C371ABDD69300EDF387 /* AGTBook.m in Sources */,
 				07408C181ABDD59000EDF387 /* main.m in Sources */,

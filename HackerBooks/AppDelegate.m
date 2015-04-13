@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "AGTJSONUtils.h"
+#import "AGTLocalFile.h"
 #import "AGTLibrary.h"
 #import "AGTBooksTableViewController.h"
 #import "AGTBookViewController.h"
@@ -21,16 +22,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NSArray *data = [AGTJSONUtils JSONBooks];
-    AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
+    AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
+    [localFile saveData:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"]];
+    //NSArray *data = [AGTJSONUtils JSONBooks];
+    NSArray *data;
     
-     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+   [AGTJSONUtils JSONBooksWithCompletionBlock:^(NSArray *array) {
+       <#code#>
+   }];
+   // AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
     
-    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [self configureForPadWithModel:model];
-    } else {
-        [self configureForPhoneWithModel:model];
-    }
+     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+      //  [self configureForPadWithModel:model];
+    //} else {
+      //  [self configureForPhoneWithModel:model];
+   // }
     
    
     // Override point for customization after application launch.

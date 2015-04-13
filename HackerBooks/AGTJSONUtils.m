@@ -13,7 +13,7 @@
 
 @implementation AGTJSONUtils
 
-+(NSArray *) JSONBooks {
++(NSArray *) JSONBooksWithCompletionBlock : (void (^)(NSArray * array)) completionBlock{
     
     NSData *JSONData;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -21,20 +21,10 @@
     
     if ([defaults objectForKey:FIRST_EXECUTION] == nil) {
         
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"]];
-        NSURLResponse *response = [[NSURLResponse alloc]init];
-        NSError *error;
-        JSONData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
-         NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:&error];
-        
-        for (NSDictionary *book in JSONObjects) {
-            NSURL *imageURL = [NSURL URLWithString:[book objectForKey:IMAGE_URL_KEY]];
-            [AGTLocalFile saveDataWithURL:imageURL];
-        }
-        
+        AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
+        [localFile sa]
         [self markAsExecuted:JSONData];
-    } else {
+        
         
         JSONData = [NSData dataWithContentsOfURL:[self urlForJSONBooks] options:NSDataReadingMappedAlways error:&error];
         
@@ -93,6 +83,19 @@
         if (![data writeToURL:url options:NSDataWritingAtomic error:&error]) {
             NSLog(@"Error al guardar el archivo JSON, %@", error.localizedDescription);
         }
+    }
+    
+}
+
+#pragma mark -NSURLSessionDownloadDelegate
+
+-(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
+    
+    NSError *error;
+    NSLog(@"Acabó la descarga: %@", [NSData dataWithContentsOfURL:location]);
+    NSData *data = [NSData dataWithContentsOfURL:location];
+    if (!([data writeToURL:[AGTJSONUtils urlForJSONBooks] options:NSDataWritingAtomic error:&error])) {
+        NSLog(@"Error al guardar JSON: %@", error);
     }
     
 }
