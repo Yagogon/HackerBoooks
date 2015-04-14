@@ -1,6 +1,10 @@
 #import "AGTBook.h"
+#import "Constants.h"
+#import "AGTTag.h"
+#import "AGTPdf.h"
 
 @interface AGTBook ()
+
 
 // Private interface goes here.
 
@@ -9,5 +13,49 @@
 @implementation AGTBook
 
 // Custom logic goes here.
+
++(instancetype) bookWithDict: (NSDictionary *) dict context: (NSManagedObjectContext *) context{
+    
+    AGTBook *book = [self insertInManagedObjectContext:context];
+    
+    book.authors = [dict objectForKey:AUTHORS_KEY];
+    book.title = [dict objectForKey:TITLE_KEY];
+    book.bookUrl = [dict objectForKey:IMAGE_URL_KEY];
+    book.favoriteValue = NO;
+    
+    // Creación de los tags
+    NSError *error;
+    NSArray *tagsName = [dict objectForKey:TAGS_KEY];
+    NSMutableSet *bookTags = [[NSMutableSet alloc] init];
+    
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
+    
+    for (NSString *tagName in tagsName) {
+        
+        req.predicate = [NSPredicate predicateWithFormat:@"name = %@", tagName];
+        NSArray *results = [context executeFetchRequest:req
+                                                  error:&error
+                            ];
+
+        AGTTag *tagFetched = [results objectAtIndex:0];
+        
+        if (!tagFetched) {
+            AGTTag *tag = [AGTTag tagWithName:tagName context:context];
+            [bookTags addObject:tag];
+        } else {
+            [bookTags addObject:tagFetched];
+        }
+        
+    }
+    
+    // Añado los tags al libro, por la inversa se añade el libro a los tag
+    [book addTags:bookTags];
+    
+    [book setPdf:[AGTPdf pdfWithString:[dict objectForKey:PDF_URL_KEY]
+                               context:context]];
+    
+    return book;
+    
+}
 
 @end

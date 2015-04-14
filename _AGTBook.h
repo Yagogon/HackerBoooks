@@ -6,6 +6,7 @@
 extern const struct AGTBookAttributes {
 	__unsafe_unretained NSString *authors;
 	__unsafe_unretained NSString *bookImage;
+	__unsafe_unretained NSString *bookUrl;
 	__unsafe_unretained NSString *favorite;
 	__unsafe_unretained NSString *title;
 } AGTBookAttributes;
@@ -36,6 +37,10 @@ extern const struct AGTBookRelationships {
 @property (nonatomic, strong) NSData* bookImage;
 
 //- (BOOL)validateBookImage:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* bookUrl;
+
+//- (BOOL)validateBookUrl:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSNumber* favorite;
 
@@ -86,6 +91,9 @@ extern const struct AGTBookRelationships {
 
 - (NSData*)primitiveBookImage;
 - (void)setPrimitiveBookImage:(NSData*)value;
+
+- (NSString*)primitiveBookUrl;
+- (void)setPrimitiveBookUrl:(NSString*)value;
 
 - (NSNumber*)primitiveFavorite;
 - (void)setPrimitiveFavorite:(NSNumber*)value;

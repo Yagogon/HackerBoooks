@@ -21,6 +21,7 @@
 		071255D21ADD8A9700A6DB06 /* AGTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C41ADD8A9700A6DB06 /* AGTLocation.m */; };
 		071255D31ADD8A9700A6DB06 /* AGTPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C61ADD8A9700A6DB06 /* AGTPdf.m */; };
 		071255D41ADD8A9700A6DB06 /* AGTPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C81ADD8A9700A6DB06 /* AGTPhoto.m */; };
+		071255D81ADDA9A500A6DB06 /* AGTCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255D71ADDA9A500A6DB06 /* AGTCoreDataStack.m */; };
 		07408C181ABDD59000EDF387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C171ABDD59000EDF387 /* main.m */; };
 		07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C1A1ABDD59000EDF387 /* AppDelegate.m */; };
 		07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07408C1C1ABDD59000EDF387 /* Images.xcassets */; };
@@ -77,6 +78,8 @@
 		071255C61ADD8A9700A6DB06 /* AGTPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPdf.m; sourceTree = "<group>"; };
 		071255C71ADD8A9700A6DB06 /* AGTPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPhoto.h; sourceTree = "<group>"; };
 		071255C81ADD8A9700A6DB06 /* AGTPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPhoto.m; sourceTree = "<group>"; };
+		071255D61ADDA9A500A6DB06 /* AGTCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTCoreDataStack.h; sourceTree = "<group>"; };
+		071255D71ADDA9A500A6DB06 /* AGTCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTCoreDataStack.m; sourceTree = "<group>"; };
 		07408C121ABDD59000EDF387 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07408C161ABDD59000EDF387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07408C171ABDD59000EDF387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 		07408C381ABDD69A00EDF387 /* Modelo */ = {
 			isa = PBXGroup;
 			children = (
+				071255D61ADDA9A500A6DB06 /* AGTCoreDataStack.h */,
+				071255D71ADDA9A500A6DB06 /* AGTCoreDataStack.m */,
 				071255D51ADD8AA500A6DB06 /* Machine */,
 				071255BF1ADD8A9700A6DB06 /* AGTAnnotation.h */,
 				071255C01ADD8A9700A6DB06 /* AGTAnnotation.m */,
@@ -364,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				071255D81ADDA9A500A6DB06 /* AGTCoreDataStack.m in Sources */,
 				077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */,
 				071255CB1ADD8A9700A6DB06 /* _AGTAnnotation.m in Sources */,
 				071255D21ADD8A9700A6DB06 /* AGTLocation.m in Sources */,

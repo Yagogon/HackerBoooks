@@ -5,6 +5,7 @@
 
 const struct AGTPdfAttributes AGTPdfAttributes = {
 	.pdfData = @"pdfData",
+	.url = @"url",
 };
 
 const struct AGTPdfRelationships AGTPdfRelationships = {
@@ -41,6 +42,8 @@ const struct AGTPdfRelationships AGTPdfRelationships = {
 }
 
 @dynamic pdfData;
+
+@dynamic url;
 
 @dynamic book;
 

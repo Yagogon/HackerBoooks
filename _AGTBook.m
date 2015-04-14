@@ -6,6 +6,7 @@
 const struct AGTBookAttributes AGTBookAttributes = {
 	.authors = @"authors",
 	.bookImage = @"bookImage",
+	.bookUrl = @"bookUrl",
 	.favorite = @"favorite",
 	.title = @"title",
 };
@@ -54,6 +55,8 @@ const struct AGTBookRelationships AGTBookRelationships = {
 @dynamic authors;
 
 @dynamic bookImage;
+
+@dynamic bookUrl;
 
 @dynamic favorite;
 

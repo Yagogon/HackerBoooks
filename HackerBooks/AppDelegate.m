@@ -7,14 +7,16 @@
 //
 
 #import "AppDelegate.h"
-#import "AGTJSONUtils.h"
 #import "AGTLocalFile.h"
-#import "AGTLibrary.h"
 #import "AGTBooksTableViewController.h"
 #import "AGTBookViewController.h"
 #import "AGTLoadingViewController.h"
+#import "AGTBook.h"
+#import "AGTCoreDataStack.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) AGTCoreDataStack *stack;
 
 @end
 
@@ -23,6 +25,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // Creamos una instancia del stack
+    self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
+    
     if ([[NSUserDefaults standardUserDefaults] objectForKey:FIRST_EXECUTION] == nil) {
         
         AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
@@ -30,14 +35,29 @@
             
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
                 
-                AGTLibrary *model = [[AGTLibrary alloc] initWithArray:array];
+                for (NSDictionary *dict in array) {
+                    [AGTBook bookWithDict:dict context:self.stack.context];
+                }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                        [self configureForPadWithModel:model];
-                    } else {
-                        [self configureForPhoneWithModel:model];
-                    }
+                    //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                      //  [self configureForPadWithModel:model];
+                   // } else {
+                     //   [self configureForPhoneWithModel:model];
+                   // }
+                    
+                    // Buscar
+                    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTBook entityName]];
+                                       // Recupera por lotes de X
+                    req.fetchBatchSize = 20;
+                    //req.predicate = [NSPredicate predicateWithFormat:@"notebook = %@", exs];
+                    
+                    NSArray *results = [self.stack executeFetchRequest:req
+                                                            errorBlock:^(NSError *error) {
+                                                                NSLog(@"Error al buscar! %@", error.localizedDescription);
+                                                            }];
+                    NSLog(@"Resultados: %@", results);
+
                     
                 });
             });
@@ -88,41 +108,41 @@
     
 }
 
--(void)configureForPhoneWithModel:(AGTLibrary *)library{
-    
-    // Creamos el controlador
-    AGTBooksTableViewController *tableVC = [[AGTBooksTableViewController alloc] initWithLibrary:library
-                                                                                          style:UITableViewStylePlain];
-    
-    // Creamos el combinador
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:tableVC];
-    
-    // Asignamos delegados
-    tableVC.delegate = tableVC;
-    
-    // Lo hacemos root
-    self.window.rootViewController = navVC;
-    
-}
+//-(void)configureForPhoneWithModel:(AGTLibrary *)library{
+//    
+//    // Creamos el controlador
+//    AGTBooksTableViewController *tableVC = [[AGTBooksTableViewController alloc] initWithLibrary:library
+//                                                                                          style:UITableViewStylePlain];
+//    
+//    // Creamos el combinador
+//    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:tableVC];
+//    
+//    // Asignamos delegados
+//    tableVC.delegate = tableVC;
+//    
+//    // Lo hacemos root
+//    self.window.rootViewController = navVC;
+//    
+//}
 
--(void)configureForPadWithModel:(AGTLibrary *)library{
+//-(void)configureForPadWithModel:(AGTLibrary *)library{
     
-    AGTBooksTableViewController *tabVC = [[AGTBooksTableViewController alloc] initWithLibrary:library style:UITableViewStylePlain];
-    UINavigationController *navTab = [[UINavigationController alloc] initWithRootViewController:tabVC];
+    //AGTBooksTableViewController *tabVC = [[AGTBooksTableViewController alloc] initWithLibrary:library style:UITableViewStylePlain];
+    //UINavigationController *navTab = [[UINavigationController alloc] initWithRootViewController:tabVC];
     
-    AGTBookViewController *bookVC = [[AGTBookViewController alloc] initWithBook:[library booksForTag:[[library tags] objectAtIndex:1] atIndex:0]];
-    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:bookVC];
+    //AGTBookViewController *bookVC = [[AGTBookViewController alloc] initWithBook:[library booksForTag:[[library tags] objectAtIndex:1] atIndex:0]];
+   // UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:bookVC];
     
-    tabVC.delegate = bookVC;
+    //tabVC.delegate = bookVC;
     
-    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
-    splitVC.viewControllers = @[navTab, navBook];
+   // UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    //splitVC.viewControllers = @[navTab, navBook];
     
-    bookVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem;
+    //bookVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem;
     
-    self.window.rootViewController = splitVC;
+    //self.window.rootViewController = splitVC;
     
-}
+//}
 
 
 @end
