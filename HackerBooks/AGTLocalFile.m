@@ -8,6 +8,7 @@
 
 #import "AGTLocalFile.h"
 #import "AGTBook.h"
+#import "AGTJSONUtils.h"
 
 @interface AGTLocalFile ()
 
@@ -45,7 +46,19 @@
  
     NSURLSessionDataTask *task = [self.downloadSession dataTaskWithRequest:request
                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                
                                 NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                
+                                BOOL save = [data writeToURL:[AGTJSONUtils urlForJSONBooks]
+                                                     options:NSDataWritingAtomic
+                                                       error:&error];
+                                if (!save) {
+                                    NSLog(@"Error al guardar JSON: %@", error.localizedDescription);
+                                } else {
+                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                    [defaults setObject:@1 forKey:FIRST_EXECUTION];
+                                }
+
                                 completionBlock(JSONObjects);
                             }];
     [task resume];

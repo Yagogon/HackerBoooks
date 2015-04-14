@@ -12,6 +12,7 @@
 #import "AGTLibrary.h"
 #import "AGTBooksTableViewController.h"
 #import "AGTBookViewController.h"
+#import "AGTLoadingViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,27 +23,44 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
-    [localFile saveData:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"]];
-    //NSArray *data = [AGTJSONUtils JSONBooks];
-    NSArray *data;
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:FIRST_EXECUTION] == nil) {
+        
+        AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
+        [localFile saveData:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"] completionBlock:^(NSArray *array) {
+            
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+                
+                AGTLibrary *model = [[AGTLibrary alloc] initWithArray:array];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                        [self configureForPadWithModel:model];
+                    } else {
+                        [self configureForPhoneWithModel:model];
+                    }
+                    
+                });
+            });
+        }];
+        
+    }
+    // AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
     
-   [AGTJSONUtils JSONBooksWithCompletionBlock:^(NSArray *array) {
-       <#code#>
-   }];
-   // AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
-    
-     //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-      //  [self configureForPadWithModel:model];
+    //  [self configureForPadWithModel:model];
     //} else {
-      //  [self configureForPhoneWithModel:model];
-   // }
+    //  [self configureForPhoneWithModel:model];
+    // }
     
-   
+    
     // Override point for customization after application launch.
+    AGTLoadingViewController *lVC = [[AGTLoadingViewController alloc] initWithNibName:nil
+                                                                               bundle:nil];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = lVC;
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -13,30 +13,15 @@
 
 @implementation AGTJSONUtils
 
-+(NSArray *) JSONBooksWithCompletionBlock : (void (^)(NSArray * array)) completionBlock{
++(void) JSONBooksWithCompletionBlock : (void (^)(NSArray * array)) completionBlock{
     
-    NSData *JSONData;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSError *error;
     
     if ([defaults objectForKey:FIRST_EXECUTION] == nil) {
         
         AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
-        [localFile sa]
-        [self markAsExecuted:JSONData];
-        
-        
-        JSONData = [NSData dataWithContentsOfURL:[self urlForJSONBooks] options:NSDataReadingMappedAlways error:&error];
-        
-        if (!JSONData) {
-            NSLog(@"Error al recuperar el JSON: %@", error.localizedDescription);
-        }
+        [localFile saveData:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"] completionBlock:completionBlock];
     }
-    
-    NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:&error];
-    
-    
-    return JSONObjects;
 }
 
 +(void) markAsExecuted: (NSData *)data{

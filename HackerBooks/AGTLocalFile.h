@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#define FIRST_EXECUTION @"firstExecution"
+
 @class AGTBook;
 
 @interface AGTLocalFile : NSObject <NSURLSessionDownloadDelegate>
