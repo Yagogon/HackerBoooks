@@ -8,13 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		070C3BEE1AC9AD0000260CA5 /* AGTBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */; };
+		071255B01ADD847B00A6DB06 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 071255AE1ADD847B00A6DB06 /* Model.xcdatamodeld */; };
 		07408C181ABDD59000EDF387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C171ABDD59000EDF387 /* main.m */; };
 		07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C1A1ABDD59000EDF387 /* AppDelegate.m */; };
 		07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07408C1C1ABDD59000EDF387 /* Images.xcassets */; };
 		07408C201ABDD59000EDF387 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07408C1E1ABDD59000EDF387 /* LaunchScreen.xib */; };
 		07408C2C1ABDD59000EDF387 /* HackerBooksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C2B1ABDD59000EDF387 /* HackerBooksTests.m */; };
-		07408C371ABDD69300EDF387 /* AGTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C361ABDD69300EDF387 /* AGTBook.m */; };
-		07408C3B1ABDD8C400EDF387 /* AGTLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */; };
 		074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 074838341ACC505800B1BDE6 /* AGTLocalFile.m */; };
 		075957A41ADC35CC00EB34BB /* AGTLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075957A21ADC35CC00EB34BB /* AGTLoadingViewController.m */; };
 		075957A51ADC35CC00EB34BB /* AGTLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 075957A31ADC35CC00EB34BB /* AGTLoadingViewController.xib */; };
@@ -41,6 +40,7 @@
 /* Begin PBXFileReference section */
 		070C3BEC1AC9AD0000260CA5 /* AGTBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBooksTableViewController.h; sourceTree = "<group>"; };
 		070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBooksTableViewController.m; sourceTree = "<group>"; };
+		071255AF1ADD847B00A6DB06 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		07408C121ABDD59000EDF387 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07408C161ABDD59000EDF387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07408C171ABDD59000EDF387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,10 +51,6 @@
 		07408C251ABDD59000EDF387 /* HackerBooksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerBooksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07408C2A1ABDD59000EDF387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07408C2B1ABDD59000EDF387 /* HackerBooksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerBooksTests.m; sourceTree = "<group>"; };
-		07408C351ABDD69300EDF387 /* AGTBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBook.h; sourceTree = "<group>"; };
-		07408C361ABDD69300EDF387 /* AGTBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBook.m; sourceTree = "<group>"; };
-		07408C391ABDD8C400EDF387 /* AGTLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLibrary.h; sourceTree = "<group>"; };
-		07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLibrary.m; sourceTree = "<group>"; };
 		074838331ACC505800B1BDE6 /* AGTLocalFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLocalFile.h; sourceTree = "<group>"; };
 		074838341ACC505800B1BDE6 /* AGTLocalFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLocalFile.m; sourceTree = "<group>"; };
 		074838361ACC52FC00B1BDE6 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -176,10 +172,7 @@
 		07408C381ABDD69A00EDF387 /* Modelo */ = {
 			isa = PBXGroup;
 			children = (
-				07408C351ABDD69300EDF387 /* AGTBook.h */,
-				07408C361ABDD69300EDF387 /* AGTBook.m */,
-				07408C391ABDD8C400EDF387 /* AGTLibrary.h */,
-				07408C3A1ABDD8C400EDF387 /* AGTLibrary.m */,
+				071255AE1ADD847B00A6DB06 /* Model.xcdatamodeld */,
 			);
 			name = Modelo;
 			path = ..;
@@ -303,15 +296,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07408C3B1ABDD8C400EDF387 /* AGTLibrary.m in Sources */,
 				077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */,
 				07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */,
 				07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */,
 				075957A41ADC35CC00EB34BB /* AGTLoadingViewController.m in Sources */,
 				074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */,
-				07408C371ABDD69300EDF387 /* AGTBook.m in Sources */,
 				07408C181ABDD59000EDF387 /* main.m in Sources */,
 				070C3BEE1AC9AD0000260CA5 /* AGTBooksTableViewController.m in Sources */,
+				071255B01ADD847B00A6DB06 /* Model.xcdatamodeld in Sources */,
 				077AAC741ACAA15E000C795A /* AGTPdfReaderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +501,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		071255AE1ADD847B00A6DB06 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				071255AF1ADD847B00A6DB06 /* Model.xcdatamodel */,
+			);
+			currentVersion = 071255AF1ADD847B00A6DB06 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 07408C0A1ABDD59000EDF387 /* Project object */;
 }
