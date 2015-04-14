@@ -9,6 +9,18 @@
 /* Begin PBXBuildFile section */
 		070C3BEE1AC9AD0000260CA5 /* AGTBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */; };
 		071255B01ADD847B00A6DB06 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 071255AE1ADD847B00A6DB06 /* Model.xcdatamodeld */; };
+		071255C91ADD8A9700A6DB06 /* _AGTTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255B21ADD8A9700A6DB06 /* _AGTTag.m */; };
+		071255CA1ADD8A9700A6DB06 /* AGTTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255B41ADD8A9700A6DB06 /* AGTTag.m */; };
+		071255CB1ADD8A9700A6DB06 /* _AGTAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255B61ADD8A9700A6DB06 /* _AGTAnnotation.m */; };
+		071255CC1ADD8A9700A6DB06 /* _AGTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255B81ADD8A9700A6DB06 /* _AGTBook.m */; };
+		071255CD1ADD8A9700A6DB06 /* _AGTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255BA1ADD8A9700A6DB06 /* _AGTLocation.m */; };
+		071255CE1ADD8A9700A6DB06 /* _AGTPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255BC1ADD8A9700A6DB06 /* _AGTPdf.m */; };
+		071255CF1ADD8A9700A6DB06 /* _AGTPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255BE1ADD8A9700A6DB06 /* _AGTPhoto.m */; };
+		071255D01ADD8A9700A6DB06 /* AGTAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C01ADD8A9700A6DB06 /* AGTAnnotation.m */; };
+		071255D11ADD8A9700A6DB06 /* AGTBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C21ADD8A9700A6DB06 /* AGTBook.m */; };
+		071255D21ADD8A9700A6DB06 /* AGTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C41ADD8A9700A6DB06 /* AGTLocation.m */; };
+		071255D31ADD8A9700A6DB06 /* AGTPdf.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C61ADD8A9700A6DB06 /* AGTPdf.m */; };
+		071255D41ADD8A9700A6DB06 /* AGTPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 071255C81ADD8A9700A6DB06 /* AGTPhoto.m */; };
 		07408C181ABDD59000EDF387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C171ABDD59000EDF387 /* main.m */; };
 		07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07408C1A1ABDD59000EDF387 /* AppDelegate.m */; };
 		07408C1D1ABDD59000EDF387 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07408C1C1ABDD59000EDF387 /* Images.xcassets */; };
@@ -41,6 +53,30 @@
 		070C3BEC1AC9AD0000260CA5 /* AGTBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBooksTableViewController.h; sourceTree = "<group>"; };
 		070C3BED1AC9AD0000260CA5 /* AGTBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBooksTableViewController.m; sourceTree = "<group>"; };
 		071255AF1ADD847B00A6DB06 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		071255B11ADD8A9700A6DB06 /* _AGTTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTTag.h; sourceTree = "<group>"; };
+		071255B21ADD8A9700A6DB06 /* _AGTTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTTag.m; sourceTree = "<group>"; };
+		071255B31ADD8A9700A6DB06 /* AGTTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTTag.h; sourceTree = "<group>"; };
+		071255B41ADD8A9700A6DB06 /* AGTTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTTag.m; sourceTree = "<group>"; };
+		071255B51ADD8A9700A6DB06 /* _AGTAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTAnnotation.h; sourceTree = "<group>"; };
+		071255B61ADD8A9700A6DB06 /* _AGTAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTAnnotation.m; sourceTree = "<group>"; };
+		071255B71ADD8A9700A6DB06 /* _AGTBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTBook.h; sourceTree = "<group>"; };
+		071255B81ADD8A9700A6DB06 /* _AGTBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTBook.m; sourceTree = "<group>"; };
+		071255B91ADD8A9700A6DB06 /* _AGTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTLocation.h; sourceTree = "<group>"; };
+		071255BA1ADD8A9700A6DB06 /* _AGTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTLocation.m; sourceTree = "<group>"; };
+		071255BB1ADD8A9700A6DB06 /* _AGTPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTPdf.h; sourceTree = "<group>"; };
+		071255BC1ADD8A9700A6DB06 /* _AGTPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTPdf.m; sourceTree = "<group>"; };
+		071255BD1ADD8A9700A6DB06 /* _AGTPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _AGTPhoto.h; sourceTree = "<group>"; };
+		071255BE1ADD8A9700A6DB06 /* _AGTPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _AGTPhoto.m; sourceTree = "<group>"; };
+		071255BF1ADD8A9700A6DB06 /* AGTAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTAnnotation.h; sourceTree = "<group>"; };
+		071255C01ADD8A9700A6DB06 /* AGTAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTAnnotation.m; sourceTree = "<group>"; };
+		071255C11ADD8A9700A6DB06 /* AGTBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTBook.h; sourceTree = "<group>"; };
+		071255C21ADD8A9700A6DB06 /* AGTBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTBook.m; sourceTree = "<group>"; };
+		071255C31ADD8A9700A6DB06 /* AGTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTLocation.h; sourceTree = "<group>"; };
+		071255C41ADD8A9700A6DB06 /* AGTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTLocation.m; sourceTree = "<group>"; };
+		071255C51ADD8A9700A6DB06 /* AGTPdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPdf.h; sourceTree = "<group>"; };
+		071255C61ADD8A9700A6DB06 /* AGTPdf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPdf.m; sourceTree = "<group>"; };
+		071255C71ADD8A9700A6DB06 /* AGTPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGTPhoto.h; sourceTree = "<group>"; };
+		071255C81ADD8A9700A6DB06 /* AGTPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGTPhoto.m; sourceTree = "<group>"; };
 		07408C121ABDD59000EDF387 /* HackerBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07408C161ABDD59000EDF387 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07408C171ABDD59000EDF387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,6 +144,25 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		071255D51ADD8AA500A6DB06 /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				071255B51ADD8A9700A6DB06 /* _AGTAnnotation.h */,
+				071255B61ADD8A9700A6DB06 /* _AGTAnnotation.m */,
+				071255B71ADD8A9700A6DB06 /* _AGTBook.h */,
+				071255B81ADD8A9700A6DB06 /* _AGTBook.m */,
+				071255B91ADD8A9700A6DB06 /* _AGTLocation.h */,
+				071255BA1ADD8A9700A6DB06 /* _AGTLocation.m */,
+				071255BB1ADD8A9700A6DB06 /* _AGTPdf.h */,
+				071255BC1ADD8A9700A6DB06 /* _AGTPdf.m */,
+				071255BD1ADD8A9700A6DB06 /* _AGTPhoto.h */,
+				071255BE1ADD8A9700A6DB06 /* _AGTPhoto.m */,
+				071255B11ADD8A9700A6DB06 /* _AGTTag.h */,
+				071255B21ADD8A9700A6DB06 /* _AGTTag.m */,
+			);
+			name = Machine;
+			sourceTree = "<group>";
+		};
 		07408C091ABDD59000EDF387 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +227,19 @@
 		07408C381ABDD69A00EDF387 /* Modelo */ = {
 			isa = PBXGroup;
 			children = (
+				071255D51ADD8AA500A6DB06 /* Machine */,
+				071255BF1ADD8A9700A6DB06 /* AGTAnnotation.h */,
+				071255C01ADD8A9700A6DB06 /* AGTAnnotation.m */,
+				071255C11ADD8A9700A6DB06 /* AGTBook.h */,
+				071255C21ADD8A9700A6DB06 /* AGTBook.m */,
+				071255C31ADD8A9700A6DB06 /* AGTLocation.h */,
+				071255C41ADD8A9700A6DB06 /* AGTLocation.m */,
+				071255C51ADD8A9700A6DB06 /* AGTPdf.h */,
+				071255C61ADD8A9700A6DB06 /* AGTPdf.m */,
+				071255C71ADD8A9700A6DB06 /* AGTPhoto.h */,
+				071255C81ADD8A9700A6DB06 /* AGTPhoto.m */,
+				071255B31ADD8A9700A6DB06 /* AGTTag.h */,
+				071255B41ADD8A9700A6DB06 /* AGTTag.m */,
 				071255AE1ADD847B00A6DB06 /* Model.xcdatamodeld */,
 			);
 			name = Modelo;
@@ -297,12 +365,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				077AAC6C1ACA96B4000C795A /* AGTBookViewController.m in Sources */,
+				071255CB1ADD8A9700A6DB06 /* _AGTAnnotation.m in Sources */,
+				071255D21ADD8A9700A6DB06 /* AGTLocation.m in Sources */,
+				071255C91ADD8A9700A6DB06 /* _AGTTag.m in Sources */,
+				071255CA1ADD8A9700A6DB06 /* AGTTag.m in Sources */,
+				071255D41ADD8A9700A6DB06 /* AGTPhoto.m in Sources */,
+				071255CE1ADD8A9700A6DB06 /* _AGTPdf.m in Sources */,
 				07A399061AC96157000CD280 /* AGTJSONUtils.m in Sources */,
 				07408C1B1ABDD59000EDF387 /* AppDelegate.m in Sources */,
+				071255D11ADD8A9700A6DB06 /* AGTBook.m in Sources */,
 				075957A41ADC35CC00EB34BB /* AGTLoadingViewController.m in Sources */,
+				071255CD1ADD8A9700A6DB06 /* _AGTLocation.m in Sources */,
 				074838351ACC505800B1BDE6 /* AGTLocalFile.m in Sources */,
+				071255CC1ADD8A9700A6DB06 /* _AGTBook.m in Sources */,
+				071255CF1ADD8A9700A6DB06 /* _AGTPhoto.m in Sources */,
+				071255D01ADD8A9700A6DB06 /* AGTAnnotation.m in Sources */,
 				07408C181ABDD59000EDF387 /* main.m in Sources */,
 				070C3BEE1AC9AD0000260CA5 /* AGTBooksTableViewController.m in Sources */,
+				071255D31ADD8A9700A6DB06 /* AGTPdf.m in Sources */,
 				071255B01ADD847B00A6DB06 /* Model.xcdatamodeld in Sources */,
 				077AAC741ACAA15E000C795A /* AGTPdfReaderViewController.m in Sources */,
 			);

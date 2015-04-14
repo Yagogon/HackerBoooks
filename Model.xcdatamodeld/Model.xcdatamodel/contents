@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Annotation" syncable="YES">
+    <entity name="Annotation" representedClassName="AGTAnnotation" syncable="YES">
         <attribute name="createData" attributeType="Date" syncable="YES"/>
         <attribute name="modificationData" attributeType="Date" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -9,7 +9,7 @@
         <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="annotation" inverseEntity="Location" syncable="YES"/>
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="annotation" inverseEntity="Photo" syncable="YES"/>
     </entity>
-    <entity name="Book" syncable="YES">
+    <entity name="Book" representedClassName="AGTBook" syncable="YES">
         <attribute name="authors" attributeType="String" syncable="YES"/>
         <attribute name="bookImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="favorite" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -18,21 +18,21 @@
         <relationship name="pdf" maxCount="1" deletionRule="Cascade" destinationEntity="Pdf" inverseName="book" inverseEntity="Pdf" syncable="YES"/>
         <relationship name="tags" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="books" inverseEntity="Tag" syncable="YES"/>
     </entity>
-    <entity name="Location" syncable="YES">
+    <entity name="Location" representedClassName="AGTLocation" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="annotation" maxCount="1" deletionRule="Cascade" destinationEntity="Annotation" inverseName="location" inverseEntity="Annotation" syncable="YES"/>
     </entity>
-    <entity name="Pdf" syncable="YES">
+    <entity name="Pdf" representedClassName="AGTPdf" syncable="YES">
         <attribute name="pdfData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Cascade" destinationEntity="Book" inverseName="pdf" inverseEntity="Book" syncable="YES"/>
     </entity>
-    <entity name="Photo" syncable="YES">
+    <entity name="Photo" representedClassName="AGTPhoto" syncable="YES">
         <attribute name="photoData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="annotation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Annotation" inverseName="photo" inverseEntity="Annotation" syncable="YES"/>
     </entity>
-    <entity name="Tag" syncable="YES">
+    <entity name="Tag" representedClassName="AGTTag" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Book" inverseName="tags" inverseEntity="Book" syncable="YES"/>
     </entity>
