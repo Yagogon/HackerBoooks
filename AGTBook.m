@@ -25,24 +25,22 @@
     
     // Creación de los tags
     NSError *error;
-    NSArray *tagsName = [dict objectForKey:TAGS_KEY];
+    NSArray *tagsName = [[dict objectForKey:TAGS_KEY] componentsSeparatedByString:@","];
     NSMutableSet *bookTags = [[NSMutableSet alloc] init];
     
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
     
     for (NSString *tagName in tagsName) {
-        
         req.predicate = [NSPredicate predicateWithFormat:@"name = %@", tagName];
         NSArray *results = [context executeFetchRequest:req
                                                   error:&error
                             ];
-
-        AGTTag *tagFetched = [results objectAtIndex:0];
         
-        if (!tagFetched) {
+        if (results.count == 0) {
             AGTTag *tag = [AGTTag tagWithName:tagName context:context];
             [bookTags addObject:tag];
         } else {
+            AGTTag *tagFetched = [results objectAtIndex:0];
             [bookTags addObject:tagFetched];
         }
         
