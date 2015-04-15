@@ -26,7 +26,7 @@
         <relationship name="annotation" maxCount="1" deletionRule="Cascade" destinationEntity="Annotation" inverseName="location" inverseEntity="Annotation" syncable="YES"/>
     </entity>
     <entity name="Pdf" representedClassName="AGTPdf" syncable="YES">
-        <attribute name="pdfData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="pdfData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Cascade" destinationEntity="Book" inverseName="pdf" inverseEntity="Book" syncable="YES"/>
     </entity>

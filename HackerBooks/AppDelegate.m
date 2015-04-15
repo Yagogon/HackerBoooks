@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "AGTLocalFile.h"
-#import "AGTBooksTableViewController.h"
+#import "AGTLibraryViewController.h"
 #import "AGTBookViewController.h"
 #import "AGTLoadingViewController.h"
+#import "AGTTag.h"
 #import "AGTBook.h"
 #import "AGTCoreDataStack.h"
 
@@ -39,6 +40,10 @@
                     [AGTBook bookWithDict:dict context:self.stack.context];
                 }
                 
+//                [self.stack saveWithErrorBlock:^(NSError *error) {
+//                    NSLog(@"Error al guardar %@", error);
+//                }];
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                       //  [self configureForPadWithModel:model];
@@ -47,17 +52,16 @@
                    // }
                     
                     // Buscar
-                    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTBook entityName]];
+                    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
+                    
+                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
                                        // Recupera por lotes de X
                     req.fetchBatchSize = 20;
-                    //req.predicate = [NSPredicate predicateWithFormat:@"notebook = %@", exs];
-                    
-                    NSArray *results = [self.stack executeFetchRequest:req
-                                                            errorBlock:^(NSError *error) {
-                                                                NSLog(@"Error al buscar! %@", error.localizedDescription);
-                                                            }];
-                    NSLog(@"Resultados: %@", results);
 
+                    // FetchedResultsController
+                    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                                         managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
+                    [self configureForPhoneWithFetchedResultsController:fc];
                     
                 });
             });
@@ -108,22 +112,22 @@
     
 }
 
-//-(void)configureForPhoneWithModel:(AGTLibrary *)library{
-//    
-//    // Creamos el controlador
-//    AGTBooksTableViewController *tableVC = [[AGTBooksTableViewController alloc] initWithLibrary:library
-//                                                                                          style:UITableViewStylePlain];
-//    
-//    // Creamos el combinador
-//    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:tableVC];
-//    
-//    // Asignamos delegados
-//    tableVC.delegate = tableVC;
-//    
-//    // Lo hacemos root
-//    self.window.rootViewController = navVC;
-//    
-//}
+-(void)configureForPhoneWithFetchedResultsController:(NSFetchedResultsController *)fc{
+    
+    // Creamos el controlador
+    AGTLibraryViewController *libraryVC = [[AGTLibraryViewController alloc] initWithFetchedResultsController:fc
+                                                                                                       style:UITableViewStylePlain];
+    
+    // Creamos el combinador
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:libraryVC];
+    
+    // Asignamos delegados
+    //tableVC.delegate = libraryVC;
+    
+    // Lo hacemos root
+    self.window.rootViewController = navVC;
+    
+}
 
 //-(void)configureForPadWithModel:(AGTLibrary *)library{
     

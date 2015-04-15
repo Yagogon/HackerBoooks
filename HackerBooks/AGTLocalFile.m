@@ -25,13 +25,13 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLResponse *response = [[NSURLResponse alloc]init];
     NSError *error;
-
+    
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     
     if (!data) {
         NSLog(@"Error al recuperar los datos, %@", error.localizedDescription);
     }
-        return data;
+    return data;
 }
 
 -(void) saveData:(NSURL *)url completionBlock: (void (^)(NSArray * array)) completionBlock{
@@ -43,24 +43,43 @@
     self.downloadSession = [NSURLSession sessionWithConfiguration:conf];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
- 
+    
     NSURLSessionDataTask *task = [self.downloadSession dataTaskWithRequest:request
-                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                                
-                                NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                
-                                BOOL save = [data writeToURL:[AGTJSONUtils urlForJSONBooks]
-                                                     options:NSDataWritingAtomic
-                                                       error:&error];
-                                if (!save) {
-                                    NSLog(@"Error al guardar JSON: %@", error.localizedDescription);
-                                } else {
-                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                    [defaults setObject:@1 forKey:FIRST_EXECUTION];
-                                }
+                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                             
+                                                             NSArray *JSONObjects = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                             
+                                                             BOOL save = [data writeToURL:[AGTJSONUtils urlForJSONBooks]
+                                                                                  options:NSDataWritingAtomic
+                                                                                    error:&error];
+                                                             if (!save) {
+                                                                 NSLog(@"Error al guardar JSON: %@", error.localizedDescription);
+                                                             } else {
+                                                                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                                                 [defaults setObject:@1 forKey:FIRST_EXECUTION];
+                                                             }
+                                                             
+                                                             completionBlock(JSONObjects);
+                                                         }];
+    [task resume];
+    
+}
 
-                                completionBlock(JSONObjects);
-                            }];
+-(void) dataWithURL:(NSURL *)url completionBlock: (void (^)(NSData * data)) completionBlock{
+    
+    // Cola de descargas
+    self.delegateQueue = [[NSOperationQueue alloc] init];
+    // Creamos configuracion por defecto
+    NSURLSessionConfiguration *conf = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.downloadSession = [NSURLSession sessionWithConfiguration:conf];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    NSURLSessionDataTask *task = [self.downloadSession dataTaskWithRequest:request
+                                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                             
+                                                             completionBlock(data);
+                                                         }];
     [task resume];
     
 }
@@ -119,7 +138,7 @@
 +(NSString *) localPathWithURL: (NSURL *) url {
     
     return [[AGTLocalFile localURL:url] path];
-
+    
 }
 
 +(NSURL *) localURL: (NSURL *) url {
@@ -127,8 +146,8 @@
     [AGTLocalFile dataWithURL:url];
     
     return [[AGTLocalFile URLToDocuments]
-             URLByAppendingPathComponent:[url lastPathComponent]];
-
+            URLByAppendingPathComponent:[url lastPathComponent]];
+    
 }
 
 #pragma mark -NSURLSessionDownloadDelegate
@@ -138,7 +157,7 @@
     NSLog(@"Acabó la descarga: %@", [NSData dataWithContentsOfURL:location]);
     
 }
-     
+
 
 
 @end

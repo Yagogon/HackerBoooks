@@ -24,4 +24,6 @@
 
 -(void) saveData:(NSURL *)url completionBlock: (void (^)(NSArray * array)) completionBlock;
 
+-(void) dataWithURL:(NSURL *)url completionBlock: (void (^)(NSData * data)) completionBlock;
+
 @end

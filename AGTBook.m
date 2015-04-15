@@ -2,6 +2,7 @@
 #import "Constants.h"
 #import "AGTTag.h"
 #import "AGTPdf.h"
+@import UIKit;
 
 @interface AGTBook ()
 
@@ -31,13 +32,15 @@
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
     
     for (NSString *tagName in tagsName) {
-        req.predicate = [NSPredicate predicateWithFormat:@"name = %@", tagName];
+       
+        NSString *trimTag = [tagName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        req.predicate = [NSPredicate predicateWithFormat:@"name = %@", trimTag];
         NSArray *results = [context executeFetchRequest:req
                                                   error:&error
                             ];
         
         if (results.count == 0) {
-            AGTTag *tag = [AGTTag tagWithName:tagName context:context];
+            AGTTag *tag = [AGTTag tagWithName:trimTag context:context];
             [bookTags addObject:tag];
         } else {
             AGTTag *tagFetched = [results objectAtIndex:0];
@@ -55,5 +58,6 @@
     return book;
     
 }
+
 
 @end
