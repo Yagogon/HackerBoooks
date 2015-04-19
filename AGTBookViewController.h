@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class AGTBook;
-#import "AGTBooksTableViewController.h"
+#import "AGTLibraryViewController.h"
 
-@interface AGTBookViewController : UIViewController <AGTBooksTableViewControllerDelegate, UISplitViewControllerDelegate>
+@interface AGTBookViewController : UIViewController <AGTLibraryViewControllerDelegate, UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *pdfImage;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -22,6 +22,7 @@
 
 - (IBAction)openPdf:(id)sender;
 - (IBAction)markAsFavorite:(id)sender;
+- (IBAction)verNotas:(id)sender;
 
 -(id) initWithBook: (AGTBook *) book;
 

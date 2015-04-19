@@ -59,5 +59,87 @@
     
 }
 
+#pragma mark - Life Cycle
+
+-(void) awakeFromInsert {
+    
+    [super awakeFromInsert];
+    
+    // Solo se produce una vez en la vida del objeto
+    [self setupKVO];
+}
+
+-(void) awakeFromFetch {
+    
+    [super awakeFromFetch];
+    
+    // Se produce N veces a lo largo de la vida del objeto
+    [self setupKVO];
+}
+
+-(void) willTurnIntoFault {
+    
+    [super willTurnIntoFault];
+    
+    // Se produce cuando el objeto se vacia conviertiéndose en un fault.
+    
+    // Baja en todas las notificaciones
+    [self tearDownKVO];
+}
+
+
+#pragma mark - KVO
+
+-(void) setupKVO {
+    
+    [self addObserver:self
+           forKeyPath:AGTBookAttributes.favorite
+              options:NSKeyValueObservingOptionNew
+              context:nil];
+    
+}
+
+-(void) tearDownKVO {
+    
+    [self removeObserver:self
+              forKeyPath:AGTBookAttributes.favorite];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+    NSError *error;
+    AGTBook *book = object;
+    
+     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
+    
+    NSString *trimTag = @"Favoritos";
+    req.predicate = [NSPredicate predicateWithFormat:@"name = %@", trimTag];
+    NSArray *results = [book.managedObjectContext executeFetchRequest:req
+                                              error:&error
+                        ];
+
+    if (book.favoriteValue) {
+        if (results.count == 0) {
+            AGTTag *tag = [AGTTag tagWithName:trimTag context:self.managedObjectContext];
+            [tag addBooksObject:book];
+            [book addTags:[NSSet setWithObject:tag]];
+        } else {
+            AGTTag *tagFetched = [results objectAtIndex:0];
+            [tagFetched addBooksObject:book];
+            [book addTags:[NSSet setWithObject:tagFetched]];
+        }
+    } else {
+        if (results.count > 0) {
+            AGTTag *tag = [AGTTag tagWithName:trimTag context:self.managedObjectContext];
+            [tag.booksSet removeObject:book];
+            [book removeTagsObject:tag];
+        
+        }
+    }
+    
+}
+
+
+
 
 @end

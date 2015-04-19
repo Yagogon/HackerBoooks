@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 -(id) initWithBook: (AGTBook *)book;
+- (IBAction)createAnnotation:(id)sender;
 
 @end

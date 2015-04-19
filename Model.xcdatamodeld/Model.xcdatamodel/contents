@@ -6,7 +6,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="text" attributeType="String" syncable="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="annotations" inverseEntity="Book" syncable="YES"/>
-        <relationship name="location" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="annotation" inverseEntity="Location" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="annotation" inverseEntity="Location" syncable="YES"/>
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Photo" inverseName="annotation" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Book" representedClassName="AGTBook" syncable="YES">

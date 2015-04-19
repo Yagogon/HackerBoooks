@@ -26,10 +26,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // Creamos la window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Creamos una instancia del stack
     self.stack = [AGTCoreDataStack coreDataStackWithModelName:@"Model"];
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:FIRST_EXECUTION] == nil) {
+        
+        AGTLoadingViewController *lVC = [[AGTLoadingViewController alloc] initWithNibName:nil
+                                                                                   bundle:nil];
+        self.window.rootViewController = lVC;
         
         AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
         [localFile saveData:[NSURL URLWithString:@"https://t.co/K9ziV0z3SJ"] completionBlock:^(NSArray *array) {
@@ -40,9 +47,9 @@
                     [AGTBook bookWithDict:dict context:self.stack.context];
                 }
                 
-//                [self.stack saveWithErrorBlock:^(NSError *error) {
-//                    NSLog(@"Error al guardar %@", error);
-//                }];
+                [self.stack saveWithErrorBlock:^(NSError *error) {
+                    NSLog(@"Error al guardar %@", error);
+                }];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -57,7 +64,7 @@
                     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
                                        // Recupera por lotes de X
                     req.fetchBatchSize = 20;
-
+                    
                     // FetchedResultsController
                     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
                                                                                          managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
@@ -67,6 +74,18 @@
             });
         }];
         
+    } else {
+        
+        NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
+        
+        req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
+        // Recupera por lotes de X
+        req.fetchBatchSize = 20;
+        
+        // FetchedResultsController
+        NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                             managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
+        [self configureForPhoneWithFetchedResultsController:fc];
     }
     // AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
     
@@ -80,12 +99,10 @@
     
     
     // Override point for customization after application launch.
-    AGTLoadingViewController *lVC = [[AGTLoadingViewController alloc] initWithNibName:nil
-                                                                               bundle:nil];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = lVC;
-    [self.window makeKeyAndVisible];
+       [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -97,6 +114,9 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.stack saveWithErrorBlock:^(NSError *error) {
+        NSLog(@"Error al guardar %@", error);
+    }];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -109,6 +129,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self.stack saveWithErrorBlock:^(NSError *error) {
+        NSLog(@"Error al guardar %@", error);
+    }];
     
 }
 
@@ -122,7 +145,7 @@
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:libraryVC];
     
     // Asignamos delegados
-    //tableVC.delegate = libraryVC;
+    libraryVC.delegate = libraryVC;
     
     // Lo hacemos root
     self.window.rootViewController = navVC;

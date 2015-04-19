@@ -10,6 +10,8 @@
 #import "AGTBook.h"
 #import "AGTTag.h"
 #import "AGTLocalFile.h"
+#import "AGTBookViewController.h"
+#import "Constants.h"
 
 @interface AGTLibraryViewController ()
 
@@ -22,21 +24,34 @@
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-//-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
-//
-//    AGTTag *tag = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    return tag.books.count;
-//
-//}
+-(void) updateTable :(NSNotification *) n {
+    
+    NSError *error;
+    [self.fetchedResultsController performFetch:&error];
+}
 
+#pragma mark - Table Delegate
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
+
+    AGTTag *tag = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    return tag.books.count;
+
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -60,11 +75,33 @@
     
     [self updateImageWithCell:cell book:book];
     
-    // cell.imageView.image = [UIImage imageWithData:[AGTLocalFile dataWithURL:book.photoURL]];
-    
     return cell;
     
     
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    AGTTag *tag = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
+    
+    AGTBook *book =[[tag.books allObjects] objectAtIndex:indexPath.row];
+    
+    [self.delegate booksTableViewController:self didSelectedBook:book];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:BOOK_CHANGE_NOTIFICATION
+                                                        object:self
+                                                      userInfo:@{ BOOK_KEY : book }];
+
+}
+
+#pragma mark - AGTBooksTableViewControllerDelegate
+
+-(void)booksTableViewController:(AGTLibraryViewController *)tabVC
+                didSelectedBook:(AGTBook *)book {
+
+    AGTBookViewController *bookVC = [[AGTBookViewController alloc] initWithBook:book];
+    [self.navigationController pushViewController:bookVC animated:YES];
+
 }
 
 #pragma mark - Utils

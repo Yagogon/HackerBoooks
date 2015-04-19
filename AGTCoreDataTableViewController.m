@@ -22,6 +22,7 @@
     
     if (self = [super initWithStyle:aStyle]) {
         self.fetchedResultsController = aFetchedResultsController;
+        
     }
     return self;
 }
@@ -123,7 +124,6 @@
                 [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
                 break;
             default:
-                // other 2 changes are irrelevant in this case
                 break;
         }
     }
@@ -162,7 +162,11 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (self.beganUpdates) [self.tableView endUpdates];
+    NSError *error;
+    if (self.beganUpdates)
+        [self.fetchedResultsController performFetch:&error];
+    [self.tableView endUpdates];
+    
 }
 
 - (void)endSuspensionOfUpdatesDueToContextChanges
