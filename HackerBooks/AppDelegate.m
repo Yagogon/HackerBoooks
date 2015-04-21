@@ -14,6 +14,7 @@
 #import "AGTTag.h"
 #import "AGTBook.h"
 #import "AGTCoreDataStack.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -52,23 +53,27 @@
                 }];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                      //  [self configureForPadWithModel:model];
-                   // } else {
-                     //   [self configureForPhoneWithModel:model];
-                   // }
                     
                     // Buscar
                     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
                     
                     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
-                                       // Recupera por lotes de X
+                    
+//                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES selector:@selector(customCompare:toObject:)]];
+                    
+                    // Recupera por lotes de X
                     req.fetchBatchSize = 20;
                     
                     // FetchedResultsController
                     NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
                                                                                          managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
-                    [self configureForPhoneWithFetchedResultsController:fc];
+                    
+                    if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                        [self configureForPadWithModel:fc];
+                    } else {
+                        [self configureForPhoneWithFetchedResultsController:fc];
+                        
+                    }
                     
                 });
             });
@@ -85,7 +90,13 @@
         // FetchedResultsController
         NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
                                                                              managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
-        [self configureForPhoneWithFetchedResultsController:fc];
+        
+        if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            [self configureForPadWithModel:fc];
+        } else {
+            [self configureForPhoneWithFetchedResultsController:fc];
+            
+        }
     }
     // AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
     
@@ -102,8 +113,24 @@
     
     
     self.window.backgroundColor = [UIColor whiteColor];
-       [self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (NSComparisonResult)customCompare:(id)obj1
+                           toObject:(id)obj2 {
+    
+    AGTTag *object1 = obj1;
+    AGTTag *object2 = obj2;
+    
+    if ([object1.name isEqualToString:FAVORITE_TAG_KEY]) {
+        return NSOrderedAscending;
+    } else if ([object2.name isEqualToString:FAVORITE_TAG_KEY]) {
+        return NSOrderedDescending;
+    } else {
+        return [object1.name compare:object2.name options:NSCaseInsensitiveSearch];
+    }
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -152,24 +179,28 @@
     
 }
 
-//-(void)configureForPadWithModel:(AGTLibrary *)library{
+-(void)configureForPadWithModel:(NSFetchedResultsController *)fc{
     
-    //AGTBooksTableViewController *tabVC = [[AGTBooksTableViewController alloc] initWithLibrary:library style:UITableViewStylePlain];
-    //UINavigationController *navTab = [[UINavigationController alloc] initWithRootViewController:tabVC];
+    AGTLibraryViewController *libraryVC = [[AGTLibraryViewController alloc] initWithFetchedResultsController:fc
+                                                                                                       style:UITableViewStylePlain];
+    UINavigationController *navTab = [[UINavigationController alloc] initWithRootViewController:libraryVC];
     
-    //AGTBookViewController *bookVC = [[AGTBookViewController alloc] initWithBook:[library booksForTag:[[library tags] objectAtIndex:1] atIndex:0]];
-   // UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:bookVC];
+    AGTTag *tag = [fc.fetchedObjects objectAtIndex:1];
     
-    //tabVC.delegate = bookVC;
+    AGTBookViewController *bVC = [[AGTBookViewController alloc] initWithBook:[[tag.booksSet allObjects] objectAtIndex:0]];
     
-   // UISplitViewController *splitVC = [[UISplitViewController alloc] init];
-    //splitVC.viewControllers = @[navTab, navBook];
+    UINavigationController *navBook = [[UINavigationController alloc] initWithRootViewController:bVC];
     
-    //bookVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem;
+    libraryVC.delegate = bVC;
     
-    //self.window.rootViewController = splitVC;
+    UISplitViewController *splitVC = [[UISplitViewController alloc] init];
+    splitVC.viewControllers = @[navTab, navBook];
     
-//}
+    bVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem;
+    
+    self.window.rootViewController = splitVC;
+    
+}
 
 
 @end

@@ -18,7 +18,7 @@ tabVC didSelectedBook: (AGTBook *) book;
 
 @end
 
-@interface AGTLibraryViewController : AGTCoreDataTableViewController <AGTLibraryViewControllerDelegate>
+@interface AGTLibraryViewController : AGTCoreDataTableViewController <AGTLibraryViewControllerDelegate, UISearchDisplayDelegate>
 
 @property (weak, nonatomic) id<AGTLibraryViewControllerDelegate> delegate;
 

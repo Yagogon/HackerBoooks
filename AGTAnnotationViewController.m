@@ -12,8 +12,7 @@
 
 @interface AGTAnnotationViewController ()
 
-
-
+@property (nonatomic) CGRect currentFrame;
 @end
 
 @implementation AGTAnnotationViewController
@@ -64,7 +63,7 @@
 -(void) viewWillDisappear:(BOOL)animated {
     
     [super viewWillDisappear:animated];
-    
+
     // Sincronizo vistas -> modelo
     self.annotation.text = self.textView.text;
     self.annotation.name = self.nameView.text;
@@ -136,15 +135,15 @@
     
     CGRect kbdFrame = [wrappedFrame CGRectValue];
     
-    CGRect currentFrame = self.textView.frame;
+    self.currentFrame = self.textView.frame;
     
     // Hacerlo con una animación que coincida con la del teclado
     [UIView animateWithDuration:duration
                      animations:^{
-                         CGRect newRect = CGRectMake(currentFrame.origin.x,
-                                                     currentFrame.origin.y,
-                                                     currentFrame.size.width,
-                                                     currentFrame.size.height - kbdFrame.size.height + self.bottomBar.frame.size.height);
+                         CGRect newRect = CGRectMake(self.currentFrame.origin.x,
+                                                     self.currentFrame.origin.y,
+                                                     self.currentFrame.size.width,
+                                                     self.currentFrame.size.height - kbdFrame.size.height + self.bottomBar.frame.size.height);
                          
                          // Calcular los nuevos bounds del self.textView
                          self.textView.frame = newRect;
@@ -159,7 +158,7 @@
     
     [UIView animateWithDuration:duration
                      animations:^{
-                         self.textView.frame = CGRectMake(8, 191, 359, 426);
+                         self.textView.frame = self.currentFrame;
                      }];
     
 }

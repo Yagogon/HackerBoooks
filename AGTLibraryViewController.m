@@ -14,7 +14,7 @@
 #import "Constants.h"
 
 @interface AGTLibraryViewController ()
-
+@property(strong, nonatomic) UISearchBar *searchBar;
 @end
 
 @implementation AGTLibraryViewController
@@ -45,9 +45,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:section];
-
-    AGTTag *tag = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    AGTTag *tag = [[self.fetchedResultsController fetchedObjects] objectAtIndex:section];
     
     return tag.books.count;
 
@@ -82,8 +80,7 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    AGTTag *tag = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:indexPath.section]];
-    
+    AGTTag *tag = [[self.fetchedResultsController fetchedObjects] objectAtIndex:indexPath.section];
     AGTBook *book =[[tag.books allObjects] objectAtIndex:indexPath.row];
     
     [self.delegate booksTableViewController:self didSelectedBook:book];
@@ -100,6 +97,7 @@
                 didSelectedBook:(AGTBook *)book {
 
     AGTBookViewController *bookVC = [[AGTBookViewController alloc] initWithBook:book];
+    
     [self.navigationController pushViewController:bookVC animated:YES];
 
 }

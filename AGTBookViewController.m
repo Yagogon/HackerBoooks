@@ -10,6 +10,8 @@
 #import "AGTBook.h"
 #import "AGTPdfReaderViewController.h"
 #import "Constants.h"
+#import "AGTLocalFile.h"
+#import "AGTAnnotationsCollectionViewController.h"
 
 @interface AGTBookViewController ()
 
@@ -38,7 +40,7 @@
            forKeyPath:@"book.favorite"
               options:NSKeyValueObservingOptionNew
               context:nil];
-
+    
     
     [self syncViewAndModel];
     
@@ -81,6 +83,10 @@
 }
 
 - (IBAction)verNotas:(id)sender {
+    
+    AGTAnnotationsCollectionViewController *nVC = [[AGTAnnotationsCollectionViewController alloc] initWithAnnotations:[self.book.annotations allObjects]];
+    
+    [self.navigationController pushViewController:nVC animated:YES];
 }
 
 
@@ -88,7 +94,7 @@
 
 -(void) syncViewAndModel {
     
-    self.pdfImage.image = [UIImage imageWithData:self.book.bookImage];
+    [self syncImage];
     self.titleLabel.text = self.book.title;
     self.authorsLabel.text = self.book.authors;
     self.title = self.book.title;
@@ -106,7 +112,27 @@
         UIImage *noFavoriteImage = [UIImage imageNamed:@"no_favorite.png"];
         [self.favoriteButton setImage:noFavoriteImage forState:UIControlStateNormal];
     }
+    
+}
 
+-(void) syncImage {
+    
+    if (!self.book.bookImage) {
+        
+        self.pdfImage.image = [UIImage imageNamed:@"libro_generico.png"];
+        
+        AGTLocalFile *localFile = [[AGTLocalFile alloc] init];
+        [localFile dataWithURL:[NSURL URLWithString:self.book.bookUrl] completionBlock:^(NSData *data) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.book.bookImage = data;
+                self.pdfImage.image = [UIImage imageWithData:data];
+            });
+        }];
+    } else {
+        self.pdfImage.image = [UIImage imageWithData:self.book.bookImage];
+    }
+    
 }
 
 #pragma mark - Notifications
@@ -123,26 +149,26 @@
 
 -(void)booksTableViewController:(AGTLibraryViewController *)tabVC
                 didSelectedBook:(AGTBook *)book {
-
+    
     self.book = book;
     [self syncViewAndModel];
 }
 
 #pragma mark - UISplitViewControllerDelegate
 
-//-(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode {
-//    
-//    // Averiguar si la tabla se ve o no
-//    // La tabla está oculta y cuelga del botón
-//    if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
-//        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
-//        
-//    } else {
-//        // Se muestra la tabla y por lo tanto oculto el botón de la barra de navegación
-//        self.navigationItem.leftBarButtonItem = nil;
-//    }
-//
-//}
+-(void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode {
+    
+    // Averiguar si la tabla se ve o no
+    // La tabla está oculta y cuelga del botón
+    if (displayMode == UISplitViewControllerDisplayModePrimaryHidden) {
+        self.navigationItem.leftBarButtonItem = svc.displayModeButtonItem;
+        
+    } else {
+        // Se muestra la tabla y por lo tanto oculto el botón de la barra de navegación
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    
+}
 
 #pragma mark - KVO
 
@@ -152,9 +178,9 @@
                       context:(void *)context {
     
     BOOL favorite = [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
-
+    
     [self updateFavoriteButtonWithBool:favorite];
-
+    
 }
 
 

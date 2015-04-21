@@ -2,6 +2,7 @@
 #import "Constants.h"
 #import "AGTTag.h"
 #import "AGTPdf.h"
+#import "Constants.h"
 @import UIKit;
 
 @interface AGTBook ()
@@ -32,7 +33,7 @@
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
     
     for (NSString *tagName in tagsName) {
-       
+        
         NSString *trimTag = [tagName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         req.predicate = [NSPredicate predicateWithFormat:@"name = %@", trimTag];
         NSArray *results = [context executeFetchRequest:req
@@ -110,32 +111,38 @@
     NSError *error;
     AGTBook *book = object;
     
-     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
     
-    NSString *trimTag = @"Favoritos";
+    NSString *trimTag = FAVORITE_TAG_KEY;
     req.predicate = [NSPredicate predicateWithFormat:@"name = %@", trimTag];
     NSArray *results = [book.managedObjectContext executeFetchRequest:req
-                                              error:&error
+                                                                error:&error
                         ];
-
+    
     if (book.favoriteValue) {
         if (results.count == 0) {
             AGTTag *tag = [AGTTag tagWithName:trimTag context:self.managedObjectContext];
             [tag addBooksObject:book];
-            [book addTags:[NSSet setWithObject:tag]];
+            [tag.managedObjectContext save:&error];
         } else {
             AGTTag *tagFetched = [results objectAtIndex:0];
             [tagFetched addBooksObject:book];
-            [book addTags:[NSSet setWithObject:tagFetched]];
+            [tagFetched.managedObjectContext save:&error];
         }
     } else {
         if (results.count > 0) {
             AGTTag *tag = [AGTTag tagWithName:trimTag context:self.managedObjectContext];
-            [tag.booksSet removeObject:book];
-            [book removeTagsObject:tag];
-        
+            [tag removeBooksObject:book];
+            if (tag.booksSet.count == 0) {
+                [tag.managedObjectContext deleteObject:tag];
+            }
+            [tag.managedObjectContext save:&error];
         }
+        
+        
     }
+    
+    
     
 }
 

@@ -142,6 +142,7 @@
         {
             case NSFetchedResultsChangeInsert:
                 [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadData];
                 break;
                 
             case NSFetchedResultsChangeDelete:
@@ -149,7 +150,7 @@
                 break;
                 
             case NSFetchedResultsChangeUpdate:
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
                 break;
                 
             case NSFetchedResultsChangeMove:
@@ -162,9 +163,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    NSError *error;
     if (self.beganUpdates)
-        [self.fetchedResultsController performFetch:&error];
     [self.tableView endUpdates];
     
 }

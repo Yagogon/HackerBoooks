@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AGTLibraryViewController.h"
 
-@interface AGTAnnotationsCollectionViewController : UICollectionViewController
+@interface AGTAnnotationsCollectionViewController : UICollectionViewController <AGTLibraryViewControllerDelegate>
 
 @property (strong, nonatomic) NSArray *annotations;
 

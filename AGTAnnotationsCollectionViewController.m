@@ -8,6 +8,11 @@
 
 #import "AGTAnnotationsCollectionViewController.h"
 #import "AGTAnnotation.h"
+#import "AGTAnnotationCollectionViewCell.h"
+#import "AGTPhoto.h"
+#import "AGTBook.h"
+#import "Constants.h"
+#import "AGTAnnotationViewController.h"
 
 @interface AGTAnnotationsCollectionViewController ()
 
@@ -15,13 +20,33 @@
 
 @implementation AGTAnnotationsCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"noteCell";
 
 #pragma mark - Init
 
 -(id) initWithAnnotations: (NSArray *) annotations {
     
+    if (self = [super initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc]init]]) {
+        _annotations = annotations;
+    }
     return self;
+}
+
+#pragma mark -  View Lifecicle
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onChangeBook:)
+                                                 name:BOOK_CHANGE_NOTIFICATION
+                                               object:nil];
+
+   
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+
+    [self registerCell];
+    
 }
 
 - (void)viewDidLoad {
@@ -36,6 +61,12 @@ static NSString * const reuseIdentifier = @"Cell";
     // Do any additional setup after loading the view.
 }
 
+-(void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -44,53 +75,65 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
+
+    return self.annotations.count;
+}
+
+-(void) registerCell{
+    
+    UINib *nib = [UINib nibWithNibName:@"AGTAnnotationCollectionViewCell"
+                                bundle:nil];
+    [self.collectionView registerNib:nib
+          forCellWithReuseIdentifier:reuseIdentifier];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
+    AGTAnnotationCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    AGTAnnotation *note = [self.annotations objectAtIndex:indexPath.row];
     // Configure the cell
+    
+    cell.title.text = note.name;
+    cell.photoView.image = [UIImage imageWithData:note.photo.photoData];
     
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+   
+    CGFloat height = self.collectionView.frame.size.height / 4;
+    CGFloat width = self.collectionView.frame.size.width / 2.2;
+
+    return CGSizeMake( width,  height);
+}
+
+#pragma mark - Notifications
+
+-(void) onChangeBook: (NSNotification *) notification {
+    
+    AGTBook *book = [notification.userInfo objectForKey:BOOK_KEY];
+    
+    self.annotations = [book.annotations allObjects];
+    
+    [self.collectionView reloadData];
+
+}
+
 #pragma mark <UICollectionViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    AGTAnnotation *note = [self.annotations objectAtIndex:indexPath.row];
+    AGTAnnotationViewController *nVC = [[AGTAnnotationViewController alloc] initWithAnnotation:note];
+    
+    [self.navigationController pushViewController:nVC animated:YES];
+    
 }
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end
