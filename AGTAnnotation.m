@@ -59,7 +59,7 @@
 
 +(NSArray *)observableKeyNames{
     
-    return @[@"name", @"text", @"photo.photoData"];
+    return @[AGTAnnotationAttributes.name, AGTAnnotationAttributes.text, @"photo.photoData"];
 }
 
 

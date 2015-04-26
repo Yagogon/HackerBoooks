@@ -32,7 +32,8 @@ static NSString * const reuseIdentifier = @"noteCell";
                                                  selector:@selector(onChangeNote:)
                                                      name:ANNOTATION_CHANGE_NOTIFICATION
                                                    object:nil];
-        
+
+        self.collectionView.backgroundColor = [UIColor grayColor];
     }
     
     return self;

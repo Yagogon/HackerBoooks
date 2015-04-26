@@ -26,6 +26,7 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <size key="customSize" width="213" height="204"/>
             <connections>
                 <outlet property="photoView" destination="mrX-fz-tO1" id="XeB-GZ-lWQ"/>

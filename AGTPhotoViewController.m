@@ -88,6 +88,24 @@
 }
 
 - (IBAction)deletePhoto:(id)sender {
+    
+    // La eliminamos del modelo
+    self.photo.photoData = nil;
+    
+    CGRect oldRect = self.photoView.bounds;
+    [UIView animateWithDuration:0.7
+                     animations:^{
+                         self.photoView.alpha = 0;
+                         self.photoView.bounds = CGRectZero;
+                         self.photoView.transform = CGAffineTransformMakeRotation(M_PI_2);
+                         self.photoView.transform = CGAffineTransformMakeTranslation(self.trashButton.customView.center.x,                          self.trashButton.customView.center.y);
+                         
+                     } completion:^(BOOL finished) {
+                         self.photoView.alpha = 1;
+                         self.photoView.bounds = oldRect;
+                         self.photoView.image = [UIImage imageWithData:self.photo.photoData];
+                         self.photoView.transform = CGAffineTransformIdentity;
+                     }];
 }
 
 #pragma mark - UIImagePickerControllerDelegate

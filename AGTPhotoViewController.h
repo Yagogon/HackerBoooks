@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) AGTPhoto* photo;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *trashButton;
 
 -(id)initWithPhoto: (AGTPhoto *) photo;
 

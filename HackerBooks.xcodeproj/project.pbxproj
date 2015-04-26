@@ -153,12 +153,12 @@
 		070C3BEF1AC9AD0600260CA5 /* Controlador */ = {
 			isa = PBXGroup;
 			children = (
-				07496D031AEBC035004E29BF /* Book */,
-				07496D041AEBC048004E29BF /* Annotation */,
 				071255D91ADDAE3F00A6DB06 /* AGTCoreDataTableViewController.h */,
 				071255DA1ADDAE3F00A6DB06 /* AGTCoreDataTableViewController.m */,
 				075957A11ADC35CC00EB34BB /* AGTLoadingViewController.h */,
 				075957A21ADC35CC00EB34BB /* AGTLoadingViewController.m */,
+				07496D031AEBC035004E29BF /* Book */,
+				07496D041AEBC048004E29BF /* Annotation */,
 				07E6C4211AE1987D004060FF /* AGTPhotoViewController.h */,
 				07E6C4221AE1987D004060FF /* AGTPhotoViewController.m */,
 			);
