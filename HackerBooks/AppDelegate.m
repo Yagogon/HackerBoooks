@@ -54,24 +54,12 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    // Buscar
-                    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
-                    
-//                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
-                    
-                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES selector:@selector(compare:)]];
-                    
-                    // Recupera por lotes de X
-                    req.fetchBatchSize = 20;
-                    
-                    // FetchedResultsController
-                    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
-                                                                                         managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
+                   
                     
                     if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                        [self configureForPadWithModel:fc];
+                        [self configureForPadWithModel:[self prepareFetchedResultsController]];
                     } else {
-                        [self configureForPhoneWithFetchedResultsController:fc];
+                        [self configureForPhoneWithFetchedResultsController:[self prepareFetchedResultsController]];
                         
                     }
                     
@@ -176,6 +164,24 @@
     bVC.navigationItem.leftBarButtonItem = splitVC.displayModeButtonItem;
     
     self.window.rootViewController = splitVC;
+    
+}
+
+-(NSFetchedResultsController *) prepareFetchedResultsController {
+    
+    // Buscar
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
+    
+    
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES selector:@selector(compare:)]];
+    
+    // Recupera por lotes de X
+    req.fetchBatchSize = 20;
+    
+    // FetchedResultsController
+    NSFetchedResultsController *fc = [[NSFetchedResultsController alloc] initWithFetchRequest:req
+                                                                         managedObjectContext:self.stack.context sectionNameKeyPath:@"name" cacheName:nil];
+    return fc;
     
 }
 
