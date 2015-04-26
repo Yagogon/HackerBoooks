@@ -7,11 +7,13 @@
 //
 
 #import "AGTCoreDataTableViewController.h"
-
+#import "Constants.h"
+#import "AGTTag.h"
 
 
 @interface AGTCoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
+@property NSUInteger currentBooksInFavoritesCount;
 @end
 
 @implementation AGTCoreDataTableViewController
@@ -22,7 +24,8 @@
     
     if (self = [super initWithStyle:aStyle]) {
         self.fetchedResultsController = aFetchedResultsController;
-        
+        _currentBooksInFavoritesCount = 0;
+      
     }
     return self;
 }
@@ -30,6 +33,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+
+-(void) dealloc {
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self forKeyPath:TAG_CHANGE_NOTIFICATION];
+    
 }
 
 #pragma mark - Fetching
@@ -84,12 +94,12 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-	return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -109,8 +119,8 @@
 
 - (void)controller:(NSFetchedResultsController *)controller
   didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-		   atIndex:(NSUInteger)sectionIndex
-	 forChangeType:(NSFetchedResultsChangeType)type
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
 {
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
     {
@@ -132,10 +142,12 @@
 
 - (void)controller:(NSFetchedResultsController *)controller
    didChangeObject:(id)anObject
-	   atIndexPath:(NSIndexPath *)indexPath
-	 forChangeType:(NSFetchedResultsChangeType)type
-	  newIndexPath:(NSIndexPath *)newIndexPath
+       atIndexPath:(NSIndexPath *)indexPath
+     forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
 {
+    AGTTag *tag;
+    
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
     {
         switch(type)
@@ -143,6 +155,11 @@
             case NSFetchedResultsChangeInsert:
                 [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
                 [self.tableView reloadData];
+
+                tag = anObject;
+                if ([tag.name isEqualToString:FAVORITE_TAG_KEY]) {
+                    self.currentBooksInFavoritesCount = tag.books.count;
+                }
                 break;
                 
             case NSFetchedResultsChangeDelete:
@@ -150,7 +167,24 @@
                 break;
                 
             case NSFetchedResultsChangeUpdate:
-                [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                
+                tag = anObject;
+
+                if (self.currentBooksInFavoritesCount > tag.books.count ) {
+            
+                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                } else {
+             
+                    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+                }
+          
+                [self.tableView reloadData];
+                                
+                if ([tag.name isEqualToString:FAVORITE_TAG_KEY]) {
+                    self.currentBooksInFavoritesCount = tag.books.count;
+                }
+                
+               
                 break;
                 
             case NSFetchedResultsChangeMove:
@@ -164,8 +198,12 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     if (self.beganUpdates)
-    [self.tableView endUpdates];
+        [self.tableView endUpdates];
     
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error al refrescar los datos: %@", error);
+    }
 }
 
 - (void)endSuspensionOfUpdatesDueToContextChanges

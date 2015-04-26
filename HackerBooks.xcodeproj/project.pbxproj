@@ -153,31 +153,14 @@
 		070C3BEF1AC9AD0600260CA5 /* Controlador */ = {
 			isa = PBXGroup;
 			children = (
+				07496D031AEBC035004E29BF /* Book */,
+				07496D041AEBC048004E29BF /* Annotation */,
 				071255D91ADDAE3F00A6DB06 /* AGTCoreDataTableViewController.h */,
 				071255DA1ADDAE3F00A6DB06 /* AGTCoreDataTableViewController.m */,
-				07FE57FB1ACFE31A00A7301A /* AGTBookViewController~iphone.xib */,
-				077AAC691ACA96B4000C795A /* AGTBookViewController.h */,
-				077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */,
-				077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */,
-				077AAC711ACAA15E000C795A /* AGTPdfReaderViewController.h */,
-				077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */,
-				077AAC731ACAA15E000C795A /* AGTPdfReaderViewController.xib */,
 				075957A11ADC35CC00EB34BB /* AGTLoadingViewController.h */,
 				075957A21ADC35CC00EB34BB /* AGTLoadingViewController.m */,
-				075957A31ADC35CC00EB34BB /* AGTLoadingViewController.xib */,
-				071255E11ADDB06A00A6DB06 /* AGTLibraryViewController.h */,
-				071255E21ADDB06A00A6DB06 /* AGTLibraryViewController.m */,
-				07E6C4191AE18AF5004060FF /* AGTAnnotationViewController.h */,
-				07E6C41A1AE18AF5004060FF /* AGTAnnotationViewController.m */,
-				07E6C41B1AE18AF5004060FF /* AGTAnnotationViewController.xib */,
-				07E6C41E1AE1961C004060FF /* AGTAnnotationsCollectionViewController.h */,
-				07E6C41F1AE1961C004060FF /* AGTAnnotationsCollectionViewController.m */,
 				07E6C4211AE1987D004060FF /* AGTPhotoViewController.h */,
 				07E6C4221AE1987D004060FF /* AGTPhotoViewController.m */,
-				07E6C4231AE1987D004060FF /* AGTPhotoViewController.xib */,
-				0774AEBA1AE6B376007EB4AF /* AGTAnnotationCollectionViewCell.h */,
-				0774AEBB1AE6B376007EB4AF /* AGTAnnotationCollectionViewCell.m */,
-				0774AEBC1AE6B376007EB4AF /* AGTAnnotationCollectionViewCell.xib */,
 			);
 			name = Controlador;
 			path = ..;
@@ -226,6 +209,7 @@
 		07408C141ABDD59000EDF387 /* HackerBooks */ = {
 			isa = PBXGroup;
 			children = (
+				07496D021AEBC016004E29BF /* Vistas */,
 				070C3BEF1AC9AD0600260CA5 /* Controlador */,
 				07408C381ABDD69A00EDF387 /* Modelo */,
 				07408C191ABDD59000EDF387 /* AppDelegate.h */,
@@ -286,6 +270,47 @@
 			);
 			name = Modelo;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		07496D021AEBC016004E29BF /* Vistas */ = {
+			isa = PBXGroup;
+			children = (
+				07FE57FB1ACFE31A00A7301A /* AGTBookViewController~iphone.xib */,
+				077AAC6B1ACA96B4000C795A /* AGTBookViewController.xib */,
+				077AAC731ACAA15E000C795A /* AGTPdfReaderViewController.xib */,
+				075957A31ADC35CC00EB34BB /* AGTLoadingViewController.xib */,
+				07E6C41B1AE18AF5004060FF /* AGTAnnotationViewController.xib */,
+				07E6C4231AE1987D004060FF /* AGTPhotoViewController.xib */,
+				0774AEBC1AE6B376007EB4AF /* AGTAnnotationCollectionViewCell.xib */,
+			);
+			name = Vistas;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		07496D031AEBC035004E29BF /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				077AAC691ACA96B4000C795A /* AGTBookViewController.h */,
+				077AAC6A1ACA96B4000C795A /* AGTBookViewController.m */,
+				077AAC711ACAA15E000C795A /* AGTPdfReaderViewController.h */,
+				077AAC721ACAA15E000C795A /* AGTPdfReaderViewController.m */,
+				071255E11ADDB06A00A6DB06 /* AGTLibraryViewController.h */,
+				071255E21ADDB06A00A6DB06 /* AGTLibraryViewController.m */,
+			);
+			name = Book;
+			sourceTree = "<group>";
+		};
+		07496D041AEBC048004E29BF /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				07E6C4191AE18AF5004060FF /* AGTAnnotationViewController.h */,
+				07E6C41A1AE18AF5004060FF /* AGTAnnotationViewController.m */,
+				07E6C41E1AE1961C004060FF /* AGTAnnotationsCollectionViewController.h */,
+				07E6C41F1AE1961C004060FF /* AGTAnnotationsCollectionViewController.m */,
+				0774AEBA1AE6B376007EB4AF /* AGTAnnotationCollectionViewCell.h */,
+				0774AEBB1AE6B376007EB4AF /* AGTAnnotationCollectionViewCell.m */,
+			);
+			name = Annotation;
 			sourceTree = "<group>";
 		};
 		07A399071AC9615D000CD280 /* Utils */ = {

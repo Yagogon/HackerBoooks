@@ -17,3 +17,5 @@
 #define FAVORITE_KEY @"favorite"
 #define FAVORITE_TAG_KEY @"Favoritos"
 #define BOOK_CHANGE_NOTIFICATION @"pdfChangeNotification"
+#define ANNOTATION_CHANGE_NOTIFICATION @"annotationChangeNotification"
+#define TAG_CHANGE_NOTIFICATION @"tagChangeNotification"

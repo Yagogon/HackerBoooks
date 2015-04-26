@@ -57,9 +57,9 @@
                     // Buscar
                     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:[AGTTag entityName]];
                     
-                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
+//                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES]];
                     
-//                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES selector:@selector(customCompare:toObject:)]];
+                    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:AGTTagAttributes.name ascending:YES selector:@selector(compare:)]];
                     
                     // Recupera por lotes de X
                     req.fetchBatchSize = 20;
@@ -98,17 +98,7 @@
             
         }
     }
-    // AGTLibrary *model = [[AGTLibrary alloc] initWithArray:data];
-    
-    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    //if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-    //  [self configureForPadWithModel:model];
-    //} else {
-    //  [self configureForPhoneWithModel:model];
-    // }
-    
-    
+        
     // Override point for customization after application launch.
     
     
@@ -117,30 +107,20 @@
     return YES;
 }
 
-- (NSComparisonResult)customCompare:(id)obj1
-                           toObject:(id)obj2 {
-    
-    AGTTag *object1 = obj1;
-    AGTTag *object2 = obj2;
-    
-    if ([object1.name isEqualToString:FAVORITE_TAG_KEY]) {
-        return NSOrderedAscending;
-    } else if ([object2.name isEqualToString:FAVORITE_TAG_KEY]) {
-        return NSOrderedDescending;
-    } else {
-        return [object1.name compare:object2.name options:NSCaseInsensitiveSearch];
-    }
-
-}
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    NSLog(@"Guardando...");
+    [self.stack saveWithErrorBlock:^(NSError *error) {
+        NSLog(@"Error al guardar %@", error);
+    }];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    NSLog(@"Guardando...");
     [self.stack saveWithErrorBlock:^(NSError *error) {
         NSLog(@"Error al guardar %@", error);
     }];
@@ -156,9 +136,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [self.stack saveWithErrorBlock:^(NSError *error) {
-        NSLog(@"Error al guardar %@", error);
-    }];
     
 }
 

@@ -95,7 +95,7 @@
     
     [self addObserver:self
            forKeyPath:AGTBookAttributes.favorite
-              options:NSKeyValueObservingOptionNew
+              options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
               context:nil];
     
 }
@@ -123,26 +123,34 @@
         if (results.count == 0) {
             AGTTag *tag = [AGTTag tagWithName:trimTag context:self.managedObjectContext];
             [tag addBooksObject:book];
-            [tag.managedObjectContext save:&error];
+            
         } else {
             AGTTag *tagFetched = [results objectAtIndex:0];
             [tagFetched addBooksObject:book];
-            [tagFetched.managedObjectContext save:&error];
         }
+        
+        // Guardar para lanzar métodos delegado fetchcontroller
+        if (![book.managedObjectContext save:&error])
+        {
+            NSLog(@"Error al guardar actualizando tag: %@", error);
+        };
+        
     } else {
         if (results.count > 0) {
-            AGTTag *tag = [AGTTag tagWithName:trimTag context:self.managedObjectContext];
+            AGTTag *tag = [results objectAtIndex:0];
             [tag removeBooksObject:book];
             if (tag.booksSet.count == 0) {
                 [tag.managedObjectContext deleteObject:tag];
             }
-            [tag.managedObjectContext save:&error];
+            
+            if (![book.managedObjectContext save:&error])
+            {
+                NSLog(@"Error al guardar actualizando tag: %@", error);
+            };
         }
         
         
     }
-    
-    
     
 }
 

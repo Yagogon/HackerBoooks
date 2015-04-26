@@ -28,7 +28,13 @@ static NSString * const reuseIdentifier = @"noteCell";
     
     if (self = [super initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc]init]]) {
         _annotations = annotations;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onChangeNote:)
+                                                     name:ANNOTATION_CHANGE_NOTIFICATION
+                                                   object:nil];
+        
     }
+    
     return self;
 }
 
@@ -41,10 +47,10 @@ static NSString * const reuseIdentifier = @"noteCell";
                                              selector:@selector(onChangeBook:)
                                                  name:BOOK_CHANGE_NOTIFICATION
                                                object:nil];
-
-   
+    
+    
     self.collectionView.backgroundColor = [UIColor whiteColor];
-
+    
     [self registerCell];
     
 }
@@ -67,6 +73,11 @@ static NSString * const reuseIdentifier = @"noteCell";
     
 }
 
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+     ];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -80,7 +91,7 @@ static NSString * const reuseIdentifier = @"noteCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-
+    
     return self.annotations.count;
 }
 
@@ -106,10 +117,10 @@ static NSString * const reuseIdentifier = @"noteCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-   
+    
     CGFloat height = self.collectionView.frame.size.height / 4;
     CGFloat width = self.collectionView.frame.size.width / 2.2;
-
+    
     return CGSizeMake( width,  height);
 }
 
@@ -122,7 +133,13 @@ static NSString * const reuseIdentifier = @"noteCell";
     self.annotations = [book.annotations allObjects];
     
     [self.collectionView reloadData];
+    
+}
 
+-(void)onChangeNote:(NSNotification *) notification {
+    
+    [self.collectionView reloadData];
+    
 }
 
 #pragma mark <UICollectionViewDelegate>

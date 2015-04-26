@@ -18,14 +18,16 @@
     return tag;
 }
 
--(NSComparisonResult)customCompare: (AGTTag *) otherTag {
+-(NSComparisonResult)compare: (AGTTag *) otherTag {
     
     if ([self.name isEqualToString:FAVORITE_TAG_KEY]) {
         return NSOrderedAscending;
     } else if ([otherTag.name isEqualToString:FAVORITE_TAG_KEY]) {
         return NSOrderedDescending;
+    } else  if ([self.name isEqualToString:self.name]){
+        return NSOrderedSame;
     } else {
-        return [self.name compare:otherTag.name options:NSCaseInsensitiveSearch];
+        return [self.name compare:otherTag.name];
     }
 }
 
